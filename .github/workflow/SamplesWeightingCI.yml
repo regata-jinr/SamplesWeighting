@@ -1,0 +1,27 @@
+name: SamplesWeightingCI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+  # name: buildJob
+    # This job runs on Linux
+    runs-on: windows-latest
+
+    steps:
+     # This step uses GitHub's checkout-action: https://github.com/actions/checkout
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+     # This step uses GitHub's setup-dotnet-action: https://github.com/actions/setup-dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Build with dotnet
+    # And run build command on the chosen runner
+      run: dotnet build -c Release
+    # Show the output
+    # add tests
