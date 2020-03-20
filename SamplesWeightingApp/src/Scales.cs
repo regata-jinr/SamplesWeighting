@@ -5,9 +5,9 @@ using System.IO.Ports;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
-namespace SWeight
+namespace SamplesWeighting
 {
-    class Scales : IDisposable
+    public class Scales : IDisposable
     {
         private SerialPort port;
         private double weight;
@@ -66,5 +66,6 @@ namespace SWeight
             Dispose();
         }
 
-    }
-}
+    } // public class Scales : IDisposable
+} // namespace SamplesWeighting
+
