@@ -3,18 +3,16 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Diagnostics;
-using System.Management;
 using System.Text.RegularExpressions;
-using System.Linq;
 
 namespace SWeight
 {
-    class SerialPortsWorker : IDisposable
+    class Scales : IDisposable
     {
         private SerialPort port;
         private double weight;
 
-        public SerialPortsWorker()
+        public Scales()
         {
             try
             {
@@ -51,10 +49,11 @@ namespace SWeight
 
         private string FindScales()
         {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity where DeviceID  like '%DN02GDZ6A%' ");
-            ManagementObject scales = searcher.Get().OfType<ManagementObject>().FirstOrDefault();
-            if (scales == null) return "";
-            return Regex.Match(scales["Name"].ToString(), @"\(([^)]*)\)").Groups[1].Value;
+            throw new NotImplementedException();
+            //ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity where DeviceID  like '%DN02GDZ6A%' ");
+            //ManagementObject scales = searcher.Get().OfType<ManagementObject>().FirstOrDefault();
+            //if (scales == null) return "";
+            //return Regex.Match(scales["Name"].ToString(), @"\(([^)]*)\)").Groups[1].Value;
         }
 
         public void Dispose()
@@ -62,7 +61,7 @@ namespace SWeight
             if (port != null) port.Dispose();
         }
 
-        ~SerialPortsWorker()
+        ~Scales()
         {
             Dispose();
         }

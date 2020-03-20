@@ -7,6 +7,7 @@
 // TODO: keep the functional from previous version
 // TODO: add mechnism of weighting for selected cell
 // TODO: hit the space should be event for weighting independent from button focus - accept button?
+// TODO: after weighting at least one sample preparation phase should be closed
 
 namespace SamplesWeighting
 {
