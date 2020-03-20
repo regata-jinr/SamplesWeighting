@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace SamplesWeighting
 {
@@ -12,15 +11,9 @@ namespace SamplesWeighting
         public DbSet<Sample>      Samples      { get; set; }
         public DbSet<SamplesSet>  SamplesSets  { get; set; }
 
-        private readonly string _connectionString;
-        public WeightingContext(string connectionString) : base()
-        {
-            _connectionString = connectionString;
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connectionString);
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
