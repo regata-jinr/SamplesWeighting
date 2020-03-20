@@ -13,7 +13,7 @@ namespace SamplesWeighting
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionString);
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionString, options => options.EnableRetryOnFailure());
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

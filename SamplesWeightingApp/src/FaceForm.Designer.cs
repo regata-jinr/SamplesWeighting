@@ -1,33 +1,34 @@
 ﻿namespace SamplesWeighting
 {
-  partial class FaceForm
-  {
-    /// <summary>
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    /// <summary>
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
+    partial class FaceForm
     {
-      if (disposing && (components != null))
-      {
-        components.Dispose();
-      }
-      base.Dispose(disposing);
-    }
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-    #region Windows Form Designer generated code
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            _wc.Dispose();
+            base.Dispose(disposing);
+        }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.groupBoxType = new System.Windows.Forms.GroupBox();
             this.radioButtonTypeLLI = new System.Windows.Forms.RadioButton();
             this.radioButtonTypeSLI = new System.Windows.Forms.RadioButton();
@@ -503,37 +504,37 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-    }
+        }
 
-    #endregion
-    private System.Windows.Forms.GroupBox groupBoxType;
-    private System.Windows.Forms.TabControl tabs;
-    private System.Windows.Forms.TabPage tabSamples;
-    private System.Windows.Forms.TabPage tabStandarts;
-    private System.Windows.Forms.TabPage tabMonitors;
-    private System.Windows.Forms.GroupBox groupBoxSamples;
-    private System.Windows.Forms.DataGridView dataGridView_Samples;
-    private System.Windows.Forms.GroupBox groupBoxSamplesSets;
-    private System.Windows.Forms.DataGridView dataGridView_SamplesSet;
-    private System.Windows.Forms.GroupBox groupBoxStandarts;
-    private System.Windows.Forms.GroupBox groupBoxStandartsSets;
-    private System.Windows.Forms.GroupBox groupBoxMonitors;
-    private System.Windows.Forms.GroupBox groupBoxMonitorsSets;
-    private System.Windows.Forms.Button buttonReadFromFile;
-    private System.Windows.Forms.Button buttonSave2File;
-    private System.Windows.Forms.Button buttonAddRow;
-    private System.Windows.Forms.Button buttonSave2DB;
-    private System.Windows.Forms.Button buttonReadWeight;
-    private System.Windows.Forms.DataGridView dataGridView_StandartsSet;
-    private System.Windows.Forms.DataGridView dataGridView_MonitorsSet;
-    private System.Windows.Forms.DataGridView dataGridView_Standarts;
-    private System.Windows.Forms.DataGridView dataGridView_Monitors;
-    private System.Windows.Forms.OpenFileDialog openFileDialog_ReadFromFile;
-    private System.Windows.Forms.SaveFileDialog saveFileDialog_Save2File;
-    private System.Windows.Forms.CheckBox checkBoxDB;
-    private System.Windows.Forms.RadioButton radioButtonTypeLLI;
-    private System.Windows.Forms.RadioButton radioButtonTypeSLI;
-    private System.Windows.Forms.RadioButton radioButtonTypeBoth;
-  }
+        #endregion
+        private System.Windows.Forms.GroupBox groupBoxType;
+        private System.Windows.Forms.TabControl tabs;
+        private System.Windows.Forms.TabPage tabSamples;
+        private System.Windows.Forms.TabPage tabStandarts;
+        private System.Windows.Forms.TabPage tabMonitors;
+        private System.Windows.Forms.GroupBox groupBoxSamples;
+        private System.Windows.Forms.DataGridView dataGridView_Samples;
+        private System.Windows.Forms.GroupBox groupBoxSamplesSets;
+        private System.Windows.Forms.DataGridView dataGridView_SamplesSet;
+        private System.Windows.Forms.GroupBox groupBoxStandarts;
+        private System.Windows.Forms.GroupBox groupBoxStandartsSets;
+        private System.Windows.Forms.GroupBox groupBoxMonitors;
+        private System.Windows.Forms.GroupBox groupBoxMonitorsSets;
+        private System.Windows.Forms.Button buttonReadFromFile;
+        private System.Windows.Forms.Button buttonSave2File;
+        private System.Windows.Forms.Button buttonAddRow;
+        private System.Windows.Forms.Button buttonSave2DB;
+        private System.Windows.Forms.Button buttonReadWeight;
+        private System.Windows.Forms.DataGridView dataGridView_StandartsSet;
+        private System.Windows.Forms.DataGridView dataGridView_MonitorsSet;
+        private System.Windows.Forms.DataGridView dataGridView_Standarts;
+        private System.Windows.Forms.DataGridView dataGridView_Monitors;
+        private System.Windows.Forms.OpenFileDialog openFileDialog_ReadFromFile;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog_Save2File;
+        private System.Windows.Forms.CheckBox checkBoxDB;
+        private System.Windows.Forms.RadioButton radioButtonTypeLLI;
+        private System.Windows.Forms.RadioButton radioButtonTypeSLI;
+        private System.Windows.Forms.RadioButton radioButtonTypeBoth;
+    }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
@@ -22,16 +23,23 @@ namespace SamplesWeighting
         private readonly BindingList<SRM> _srms;
         private readonly BindingList<SRMsSet> _srmSets;
         private readonly BindingList<Sample> _sample;
-        private readonly BindingList<SamplesSet> _sampleSets;
+        private readonly List<SamplesSet> _sampleSets;
 
         private void Binding()
         {
+
+            
             
         }
 
         public FaceForm()
         {
             InitializeComponent();
+            _wc = new WeightingContext();
+            _sampleSets = _wc.SamplesSets.OrderBy(ss => ss.Year).ThenBy(ss => ss.Sample_Set_ID).ThenBy(ss => ss.Sample_Set_Index).ToList();
+
+            dataGridView_SamplesSet.DataSource = _sampleSets;
+
         }
 
     } // public partial class FaceForm : Form

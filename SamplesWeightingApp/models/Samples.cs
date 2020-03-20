@@ -24,7 +24,6 @@ namespace SamplesWeighting
         public string Year             { get; set; }
         public string Sample_Set_ID    { get; set; }
         public string Sample_Set_Index { get; set; }
-        public string Sample_ID        { get; set; }
     }
 }
 
