@@ -1,7 +1,25 @@
 ﻿{
+  "language": "rus",
+  "ToolStripMenuItemMenu": {
+    "rus": "Меню",
+    "eng": "Menu"
+  },
+
+  "ToolStripMenuItemLang": {
+    "rus": "Язык",
+    "eng": "Language"
+  },
+  "englishToolStripMenuItem": {
+    "rus": "English",
+    "eng": "English"
+  },
+  "russianToolStripMenuItem": {
+    "rus": "Русский",
+    "eng": "Russian"
+  },
   "FaceForm": {
-    "rus": "Взвешивание образцов",
-    "eng": "Samples weighting"
+    "rus": "Программа взвешивания образцов",
+    "eng": "Samples weighting application"
   },
   "Country_Code": {
     "rus": "Код страны",

@@ -41,7 +41,7 @@ namespace SamplesWeighting
             Match match = Regex.Match(port.ReadLine(), "^.*([0-9]+\\.[0-9]+).*$");
             if (match.Success)
                 weight = Convert.ToDouble(match.Groups[1].Value, CultureInfo.InvariantCulture);
-            Debug.WriteLine($"Reading weight is {weight}");
+            Debug.WriteLine($"Reading weight is {weight.ToString()}");
             return;
         }
 

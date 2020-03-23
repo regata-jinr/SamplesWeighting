@@ -55,6 +55,11 @@
             this.buttonSave2DB = new System.Windows.Forms.Button();
             this.buttonReadWeight = new System.Windows.Forms.Button();
             this.openFileDialog_ReadFromFile = new System.Windows.Forms.OpenFileDialog();
+            this.menuStripMain = new System.Windows.Forms.MenuStrip();
+            this.ToolStripMenuItemMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemLang = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.russianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxType.SuspendLayout();
             this.tabs.SuspendLayout();
             this.tabSamples.SuspendLayout();
@@ -72,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Monitors)).BeginInit();
             this.groupBoxMonitorsSets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MonitorsSet)).BeginInit();
+            this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxType
@@ -131,11 +137,11 @@
             this.tabs.Controls.Add(this.tabStandarts);
             this.tabs.Controls.Add(this.tabMonitors);
             this.tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabs.Location = new System.Drawing.Point(2, 2);
+            this.tabs.Location = new System.Drawing.Point(2, 24);
             this.tabs.Margin = new System.Windows.Forms.Padding(4);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(962, 702);
+            this.tabs.Size = new System.Drawing.Size(962, 680);
             this.tabs.TabIndex = 4;
             // 
             // tabSamples
@@ -449,6 +455,54 @@
             this.openFileDialog_ReadFromFile.Filter = "ves files (*.ves)|*.ves|All files (*.*)|*.*";
             this.openFileDialog_ReadFromFile.RestoreDirectory = true;
             this.openFileDialog_ReadFromFile.Title = "Выберите весовой файл";
+
+            // 
+            // menuStripMain
+            // 
+            this.menuStripMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemMenu});
+            this.menuStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStripMain.Location = new System.Drawing.Point(0, 0);
+            this.menuStripMain.Name = "menuStripMain";
+            this.menuStripMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStripMain.Size = new System.Drawing.Size(1140, 24);
+            this.menuStripMain.TabIndex = 11;
+            this.menuStripMain.Text = "menuStrip1";
+            // 
+            // ToolStripMenuItemMenu
+            // 
+            this.ToolStripMenuItemMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemLang});
+            this.ToolStripMenuItemMenu.Name = "ToolStripMenuItemMenu";
+            this.ToolStripMenuItemMenu.Size = new System.Drawing.Size(53, 20);
+            this.ToolStripMenuItemMenu.Text = "Меню";
+            // 
+            // ToolStripMenuItemLang
+            // 
+            this.ToolStripMenuItemLang.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishToolStripMenuItem,
+            this.russianToolStripMenuItem});
+            this.ToolStripMenuItemLang.Name = "ToolStripMenuItemLang";
+            this.ToolStripMenuItemLang.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItemLang.Text = "Язык";
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.CheckOnClick = true;
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.englishToolStripMenuItem.Text = "English";
+            this.englishToolStripMenuItem.Checked = false;
+
+            // 
+            // russianToolStripMenuItem
+            // 
+            this.russianToolStripMenuItem.CheckOnClick = true;
+            this.russianToolStripMenuItem.Name = "russianToolStripMenuItem";
+            this.russianToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.russianToolStripMenuItem.Text = "Russian";
+            this.russianToolStripMenuItem.Checked = false;
             // 
             // FaceForm
             // 
@@ -463,7 +517,9 @@
             this.Controls.Add(this.buttonReadFromFile);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.groupBoxType);
+            this.Controls.Add(this.menuStripMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MainMenuStrip = this.menuStripMain;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FaceForm";
             this.ShowIcon = false;
@@ -486,6 +542,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Monitors)).EndInit();
             this.groupBoxMonitorsSets.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MonitorsSet)).EndInit();
+            this.menuStripMain.ResumeLayout(false);
+            this.menuStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -519,6 +577,11 @@
         private System.Windows.Forms.RadioButton radioButtonTypeLLI;
         private System.Windows.Forms.RadioButton radioButtonTypeSLI;
         private System.Windows.Forms.RadioButton radioButtonTypeBoth;
+        private System.Windows.Forms.MenuStrip menuStripMain;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemMenu;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemLang;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem russianToolStripMenuItem;
 
     }
 }

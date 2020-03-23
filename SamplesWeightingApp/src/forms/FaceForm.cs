@@ -31,6 +31,7 @@ using Microsoft.Extensions.Logging;
 // TODO: add mechnism of weighting for selected cell
 // TODO: hit the space should be event for weighting independent from button focus - accept button?
 // TODO: after weighting at least one sample preparation phase should be closed
+// TODO: chosen language should be save into config file
 
 namespace SamplesWeighting
 {
@@ -40,6 +41,8 @@ namespace SamplesWeighting
         private readonly List<MonitorsSet> _monitorSets;
         private readonly List<SRMsSet>     _srmSets;
         private readonly List<SamplesSet>  _sampleSets;
+
+        private string lang = ConfigurationManager.config["language"];
 
         private List<SRM>     _srms;
         private List<Monitor> _monitors;
@@ -56,7 +59,12 @@ namespace SamplesWeighting
         public FaceForm()
         {
             InitializeComponent();
-          
+
+            if (lang == "eng")
+                englishToolStripMenuItem.Checked = true;
+            else
+                russianToolStripMenuItem.Checked = true;
+
             _wc = new WeightingContext();
 
             _sampleSets  = _wc.SamplesSets.OrderBy(ss => ss.Year).ThenBy(ss => ss.Sample_Set_Id).ThenBy(ss => ss.Sample_Set_Index).ToList();
@@ -65,44 +73,51 @@ namespace SamplesWeighting
 
             Binding();
 
-            var lang = "eng";
-
-            SetLanguageToControls(lang, this.Controls);
-            var vers = GetType().Assembly.GetName().Version;
-            this.Text = $"{ConfigurationManager.config[$"{this.Name}:{lang}"]} - {vers.Major}.{vers.Minor}.{vers.Build}";
+            SetLanguageToControls(Controls);
 
             dataGridView_SamplesSet.SelectionChanged   += DataGridView_SamplesSet_SelectionChanged;
             dataGridView_MonitorsSet.SelectionChanged  += DataGridView_MonitorsSet_SelectionChanged;
             dataGridView_StandartsSet.SelectionChanged += DataGridView_StandartsSet_SelectionChanged;
+
+            englishToolStripMenuItem.CheckedChanged += LangStripMenuItem_CheckedChanged;
+            russianToolStripMenuItem.CheckedChanged += LangStripMenuItem_CheckedChanged;
         }
 
-        private void SetLanguageToControls(string lang, Control.ControlCollection controls)
+        private void SetLanguageToControls(Control.ControlCollection controls)
         {
+            var vers = GetType().Assembly.GetName().Version;
+            Text = $"{ConfigurationManager.config[$"{this.Name}:{lang}"]} - {vers.Major.ToString()}.{vers.Minor.ToString()}.{vers.Build.ToString()}";
             foreach (var cont in controls)
-                SetLanguageToObject(lang, cont);
+                SetLanguageToObject(cont);
         }
 
-
-        private void SetLanguageToObject(string lang, object cont)
+        private void SetLanguageToObject(object cont)
         {
             switch (cont)
             {
                 case GroupBox grpb:
                     grpb.Text = ConfigurationManager.config[$"{grpb.Name}:{lang}"];
-                    SetLanguageToControls(lang, grpb.Controls);
+                    SetLanguageToControls(grpb.Controls);
                     break;
 
                 case TabControl tbcont:
                     foreach (TabPage page in tbcont.TabPages)
                     {
                         page.Text = ConfigurationManager.config[$"{page.Name}:{lang}"];
-                        SetLanguageToControls(lang, page.Controls);
+                        SetLanguageToControls( page.Controls);
                     }
                     break;
 
                 case DataGridView dgv:
                     foreach (DataGridViewColumn col in dgv.Columns)
                         col.HeaderText = ConfigurationManager.config[$"{col.Name}:{lang}"];
+                    break;
+
+                case MenuStrip ms:
+                    ToolStripMenuItemMenu.Text = ConfigurationManager.config[$"{ToolStripMenuItemMenu.Name}:{lang}"];
+                    ToolStripMenuItemLang.Text = ConfigurationManager.config[$"{ToolStripMenuItemLang.Name}:{lang}"];
+                    foreach (ToolStripItem tsi in ToolStripMenuItemLang.DropDownItems)
+                        tsi.Text = ConfigurationManager.config[$"{tsi.Name}:{lang}"];
                     break;
 
                 default:
@@ -116,7 +131,6 @@ namespace SamplesWeighting
                     throw new ArgumentNullException("Have trying to set language for null control");
             }
         }
-        
 
     } // public partial class FaceForm : Form
 } // namespace SamplesWeighting
