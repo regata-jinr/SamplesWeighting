@@ -1,86 +1,179 @@
 ﻿{
-  "rus": {
-    "F_Country_Code":              "Код страны",
-    "F_Client_ID":                 "Код клиента",
-    "F_Year":                      "Год",
-    "F_Sample_Set_ID":             "Номер партии",
-    "F_Sample_Set_Index":          "Индекс партии",
-    "SRM_Set_Name":                "Имя партии стандартов",
-    "SRM_Set_Number":              "Номер партии стандартов",
-    "Monitor_Set_Name":            "Имя партии мониторов",
-    "Monitor_Set_Number":          "Номер партии мониторов",
-    "A_Sample_ID":                 "Номер образца",
-    "P_Weighting_SLI":             "вес, г (КЖИ)",
-    "P_Weighting_LLI":             "вес, г (ДЖИ)",
-    "A_Client_Sample_ID":          "Клиентский номер образца",
-    "SRM_Number":                  "Номер стандарта",
-    "SRM_SLI_Weight":              "вес, г (КЖИ)",
-    "SRM_LLI_Weight":              "вес, г (ДЖИ)",
-    "Monitor_Number":              "Номер монитора",
-    "Monitor_SLI_Weight":          "вес, г (КЖИ)",
-    "Monitor_LLI_Weight":          "вес, г (ДЖИ)",
-    "groupBoxType":                "Тип",
-    "radioButtonTypeLLI":          "ДЖИ",
-    "radioButtonTypeSLI":          "КЖИ",
-    "radioButtonTypeBoth":         "КЖИ и ДЖИ",
-    "tabSamples":                  "Образцы",
-    "groupBoxSamples":             "Список образцов",
-    "groupBoxSamplesSets":         "Партии образцов",
-    "tabStandarts":                "Стандарты",
-    "groupBoxStandarts":           "Список стандартов",
-    "groupBoxStandartsSets":       "Партии стандартов",
-    "tabMonitors":                 "Мониторы",
-    "groupBoxMonitors":            "Список мониторов",
-    "groupBoxMonitorsSets":        "Партии мониторов",
-    "buttonReadFromFile":          "Считать из файла",
-    "buttonSave2File":             "Сохранить данные в файл",
-    "buttonAddRow":                "Добавить строку",
-    "buttonSave2DB":               "Сохранить данные в БД",
-    "buttonReadWeight":            "Взвесить",
-    "openFileDialog_ReadFromFile": "Выберите весовой файл",
-    "checkBoxDB":                  "и в БД"
-
+  "FaceForm": {
+    "rus": "Взвешивание образцов",
+    "eng": "Samples weighting"
   },
-  "eng": 
-  {
-    "F_Country_Code":              "Country Code",
-    "F_Client_ID":                 "Client Id",
-    "F_Year":                      "Year",
-    "F_Sample_Set_ID":             "Sample Set Id",
-    "F_Sample_Set_Index":          "Sample Set Ind",
-    "SRM_Set_Name":                "SRM Set Name",
-    "SRM_Set_Number":              "SRM Set Num",
-    "Monitor_Set_Name":            "Monitor Set Name",
-    "Monitor_Set_Number":          "Monitor Set Num",
-    "A_Sample_ID":                 "Sample Id",
-    "P_Weighting_SLI":             "weight, gr (SLI)",
-    "P_Weighting_LLI":             "weight, gr (LLI)",
-    "A_Client_Sample_ID":          "Sample Client Id",
-    "SRM_Number":                  "SRM Num",
-    "SRM_SLI_Weight":              "weight, gr (SLI)",
-    "SRM_LLI_Weight":              "weight, gr (LLI)",
-    "Monitor_Number":              "Monitor Num",
-    "Monitor_SLI_Weight":          "weight, gr (SLI)",
-    "Monitor_LLI_Weight":          "weight, gr LLLI)",
-    "groupBoxType":                "Type",
-    "radioButtonTypeLLI":          "LLI",
-    "radioButtonTypeSLI":          "SLI",
-    "radioButtonTypeBoth":         "SLI and LLI",
-    "tabSamples":                  "Samples",
-    "groupBoxSamples":             "Samples list",
-    "groupBoxSamplesSets":         "Samples Sets",
-    "tabStandarts":                "SRMs",
-    "groupBoxStandarts":           "SRMs list",
-    "groupBoxStandartsSets":       "SRMs sets",
-    "tabMonitors":                 "Monitors",
-    "groupBoxMonitors":            "Monitors list",
-    "groupBoxMonitorsSets":        "Monitors Sets",
-    "buttonReadFromFile":          "Read from file",
-    "buttonSave2File":             "Save to file",
-    "buttonAddRow":                "Add row",
-    "buttonSave2DB":               "Save to DB",
-    "buttonReadWeight":            "Weight in",
-    "openFileDialog_ReadFromFile": "Choose .ves file",
-    "checkBoxDB":                  "and to DB"
+  "Country_Code": {
+    "rus": "Код страны",
+    "eng": "Country Code"
+  },
+  "Client_ID": {
+    "rus": "Код клиента",
+    "eng": "Client Id"
+  },
+  "Year": {
+    "rus": "Год",
+    "eng": "Year"
+  },
+  "Sample_Set_ID": {
+    "rus": "Номер партии",
+    "eng": "Sample Set Id"
+  },
+  "Sample_Set_Index": {
+    "rus": "Индекс партии",
+    "eng": "Sample Set Ind"
+  },
+  "F_Country_Code": {
+    "rus": "Код страны",
+    "eng": "Country Code"
+  },
+  "F_Client_ID": {
+    "rus": "Код клиента",
+    "eng": "Client Id"
+  },
+  "F_Year": {
+    "rus": "Год",
+    "eng": "Year"
+  },
+  "F_Sample_Set_ID": {
+    "rus": "Номер партии",
+    "eng": "Sample Set Id"
+  },
+  "F_Sample_Set_Index": {
+    "rus": "Индекс партии",
+    "eng": "Sample Set Ind"
+  },
+  "SRM_Set_Name": {
+    "rus": "Имя партии стандартов",
+    "eng": "SRM Set Name"
+  },
+  "SRM_Set_Number": {
+    "rus": "Номер партии стандартов",
+    "eng": "SRM Set Num"
+  },
+  "Monitor_Set_Name": {
+    "rus": "Имя партии мониторов",
+    "eng": "Monitor Set Name"
+  },
+  "Monitor_Set_Number": {
+    "rus": "Номер партии мониторов",
+    "eng": "Monitor Set Num"
+  },
+  "A_Sample_ID": {
+    "rus": "Номер образца",
+    "eng": "Sample Id"
+  },
+  "P_Weighting_SLI": {
+    "rus": "вес г (КЖИ)",
+    "eng": "weight gr (SLI)"
+  },
+  "P_Weighting_LLI": {
+    "rus": "вес г (ДЖИ)",
+    "eng": "weight gr (LLI)"
+  },
+  "A_Client_Sample_ID": {
+    "rus": "Клиентский номер образца",
+    "eng": "Sample Client Id"
+  },
+  "SRM_Number": {
+    "rus": "Номер стандарта",
+    "eng": "SRM Num"
+  },
+  "SRM_SLI_Weight": {
+    "rus": "вес г (КЖИ)",
+    "eng": "weight gr (SLI)"
+  },
+  "SRM_LLI_Weight": {
+    "rus": "вес г (ДЖИ)",
+    "eng": "weight gr (LLI)"
+  },
+  "Monitor_Number": {
+    "rus": "Номер монитора",
+    "eng": "Monitor Num"
+  },
+  "Monitor_SLI_Weight": {
+    "rus": "вес г (КЖИ)",
+    "eng": "weight gr (SLI)"
+  },
+  "Monitor_LLI_Weight": {
+    "rus": "вес г (ДЖИ)",
+    "eng": "weight gr LLLI)"
+  },
+  "groupBoxType": {
+    "rus": "Тип",
+    "eng": "Type"
+  },
+  "radioButtonTypeLLI": {
+    "rus": "ДЖИ",
+    "eng": "LLI"
+  },
+  "radioButtonTypeSLI": {
+    "rus": "КЖИ",
+    "eng": "SLI"
+  },
+  "radioButtonTypeBoth": {
+    "rus": "КЖИ и ДЖИ",
+    "eng": "SLI and LLI"
+  },
+  "tabSamples": {
+    "rus": "Образцы",
+    "eng": "Samples"
+  },
+  "groupBoxSamples": {
+    "rus": "Список образцов",
+    "eng": "Samples list"
+  },
+  "groupBoxSamplesSets": {
+    "rus": "Партии образцов",
+    "eng": "Samples Sets"
+  },
+  "tabStandarts": {
+    "rus": "Стандарты",
+    "eng": "SRMs"
+  },
+  "groupBoxStandarts": {
+    "rus": "Список стандартов",
+    "eng": "SRMs list"
+  },
+  "groupBoxStandartsSets": {
+    "rus": "Партии стандартов",
+    "eng": "SRMs sets"
+  },
+  "tabMonitors": {
+    "rus": "Мониторы",
+    "eng": "Monitors"
+  },
+  "groupBoxMonitors": {
+    "rus": "Список мониторов",
+    "eng": "Monitors list"
+  },
+  "groupBoxMonitorsSets": {
+    "rus": "Партии мониторов",
+    "eng": "Monitors Sets"
+  },
+  "buttonReadFromFile": {
+    "rus": "Считать из файла",
+    "eng": "Read from file"
+  },
+  "buttonSave2File": {
+    "rus": "Сохранить данные в файл",
+    "eng": "Save to file"
+  },
+  "buttonAddRow": {
+    "rus": "Добавить строку",
+    "eng": "Add row"
+  },
+  "buttonSave2DB": {
+    "rus": "Сохранить данные в БД",
+    "eng": "Save to DB"
+  },
+  "buttonReadWeight": {
+    "rus": "Взвесить",
+    "eng": "Weight in"
+  },
+  "openFileDialog_ReadFromFile": {
+    "rus": "Выберите весовой файл",
+    "eng": "Choose .ves file"
   }
+
 }

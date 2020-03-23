@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace SamplesWeighting
 {
@@ -13,7 +14,14 @@ namespace SamplesWeighting
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionString, options => options.EnableRetryOnFailure());
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionString, 
+                                        options => 
+                                            {
+                                                options.EnableRetryOnFailure(3);
+                                                options.CommandTimeout(60); 
+                                            }
+                                       );
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

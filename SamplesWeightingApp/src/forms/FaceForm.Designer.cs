@@ -55,7 +55,6 @@
             this.buttonSave2DB = new System.Windows.Forms.Button();
             this.buttonReadWeight = new System.Windows.Forms.Button();
             this.openFileDialog_ReadFromFile = new System.Windows.Forms.OpenFileDialog();
-            this.checkBoxDB = new System.Windows.Forms.CheckBox();
             this.groupBoxType.SuspendLayout();
             this.tabs.SuspendLayout();
             this.tabSamples.SuspendLayout();
@@ -451,26 +450,12 @@
             this.openFileDialog_ReadFromFile.RestoreDirectory = true;
             this.openFileDialog_ReadFromFile.Title = "Выберите весовой файл";
             // 
-            // checkBoxDB
-            // 
-            this.checkBoxDB.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.checkBoxDB.AutoSize = true;
-            this.checkBoxDB.Checked = true;
-            this.checkBoxDB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxDB.Location = new System.Drawing.Point(1045, 286);
-            this.checkBoxDB.Name = "checkBoxDB";
-            this.checkBoxDB.Size = new System.Drawing.Size(66, 20);
-            this.checkBoxDB.TabIndex = 10;
-            this.checkBoxDB.Text = "и в БД";
-            this.checkBoxDB.UseVisualStyleBackColor = true;
-            // 
             // FaceForm
             // 
             this.AcceptButton = this.buttonReadWeight;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 705);
-            this.Controls.Add(this.checkBoxDB);
             this.Controls.Add(this.buttonReadWeight);
             this.Controls.Add(this.buttonSave2DB);
             this.Controls.Add(this.buttonAddRow);
@@ -531,7 +516,6 @@
         private System.Windows.Forms.DataGridView dataGridView_Monitors;
         private System.Windows.Forms.OpenFileDialog openFileDialog_ReadFromFile;
         private System.Windows.Forms.SaveFileDialog saveFileDialog_Save2File;
-        private System.Windows.Forms.CheckBox checkBoxDB;
         private System.Windows.Forms.RadioButton radioButtonTypeLLI;
         private System.Windows.Forms.RadioButton radioButtonTypeSLI;
         private System.Windows.Forms.RadioButton radioButtonTypeBoth;

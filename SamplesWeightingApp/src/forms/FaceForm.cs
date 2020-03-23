@@ -18,8 +18,10 @@
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using System.ComponentModel;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using System.Diagnostics;
 
 // TODO: Changing in the table should be automatically upload to db?
 // TODO: Changing in the table should be automatically upload to file, Year/Month/SamplesSet.ves
@@ -61,6 +63,51 @@ namespace SamplesWeighting
 
             Binding();
 
+            SetLanguageToControls("rus", this.Controls);
+            var vers = GetType().Assembly.GetName().Version;
+
+            this.Text = $"{this.Text} - {vers.Major}.{vers.Minor}.{vers.Build}";
+
+        }
+
+        private void SetLanguageToControls(string lang, Control.ControlCollection controls)
+        {
+            this.Text = $"{ConfigurationManager.config[$"{this.Name}:{lang}"]}";
+            foreach (var cont in controls)
+            {
+                var conType = cont.GetType();
+
+                var nameProp = conType.GetProperty("Name");
+                var textProp = conType.GetProperty("Text");
+
+                var getName = nameProp.GetGetMethod();
+                var setText = textProp.GetSetMethod();
+
+                setText.Invoke(cont, new object[] { ConfigurationManager.config[$"{getName.Invoke(cont, null)}:{lang}"] });
+
+                if (conType == typeof(GroupBox))
+                {
+                    var grpb = cont as GroupBox;
+                    SetLanguageToControls(lang, grpb.Controls);
+                }
+
+                if (conType == typeof(TabControl))
+                {
+                    var tbcont = cont as TabControl;
+                    foreach (TabPage page in tbcont.TabPages)
+                    {
+                        page.Text = ConfigurationManager.config[$"{page.Name}:{lang}"];
+                        SetLanguageToControls(lang, page.Controls);
+                    }
+                }
+
+                if (conType == typeof(DataGridView))
+                {
+                    var dgv = cont as DataGridView;
+                    foreach (DataGridViewColumn col in dgv.Columns)
+                        col.HeaderText = ConfigurationManager.config[$"{col.Name}:{lang}"];
+                }
+            }
         }
 
     } // public partial class FaceForm : Form
