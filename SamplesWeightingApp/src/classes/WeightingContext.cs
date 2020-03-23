@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using System;
+using Microsoft.Extensions.Logging;
 
 namespace SamplesWeighting
 {
@@ -21,19 +21,20 @@ namespace SamplesWeighting
                                                 options.CommandTimeout(60); 
                                             }
                                        );
-            
         }
+
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Sample>()
                                .HasKey(s => new
                                {
-                                   s.F_Country_Code,
-                                   s.F_Client_Id,
-                                   s.F_Year,
-                                   s.F_Sample_Set_Id,
-                                   s.F_Sample_Set_Index,
+                                   s.Country_Code,
+                                   s.Client_Id,
+                                   s.Year,
+                                   s.Sample_Set_Id,
+                                   s.Sample_Set_Index,
                                    s.A_Sample_ID
                                });
 
@@ -41,9 +42,9 @@ namespace SamplesWeighting
                                .HasKey(s => new
                                {
                                    s.Country_Code,
-                                   s.Client_ID,
+                                   s.Client_Id,
                                    s.Year,
-                                   s.Sample_Set_ID,
+                                   s.Sample_Set_Id,
                                    s.Sample_Set_Index
                                });
 

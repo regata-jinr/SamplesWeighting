@@ -519,6 +519,7 @@
         private System.Windows.Forms.RadioButton radioButtonTypeLLI;
         private System.Windows.Forms.RadioButton radioButtonTypeSLI;
         private System.Windows.Forms.RadioButton radioButtonTypeBoth;
+
     }
 }
 

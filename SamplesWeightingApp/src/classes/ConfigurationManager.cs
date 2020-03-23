@@ -19,7 +19,7 @@ namespace SamplesWeighting
             ConnectionString = @"Data Source=RUMLAB\REGATALOCAL;Initial Catalog=NAA_DB_TEST;Integrated Security=True;User ID=bdrum";
             config["ConnectionString"] = ConnectionString;
 #else
-            ConnectionString = _iconfig["ConnectionString"];
+            ConnectionString = config["ConnectionString"];
 #endif
         }
 

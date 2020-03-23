@@ -7,7 +7,7 @@
     "rus": "Код страны",
     "eng": "Country Code"
   },
-  "Client_ID": {
+  "Client_Id": {
     "rus": "Код клиента",
     "eng": "Client Id"
   },
@@ -20,26 +20,6 @@
     "eng": "Sample Set Id"
   },
   "Sample_Set_Index": {
-    "rus": "Индекс партии",
-    "eng": "Sample Set Ind"
-  },
-  "F_Country_Code": {
-    "rus": "Код страны",
-    "eng": "Country Code"
-  },
-  "F_Client_ID": {
-    "rus": "Код клиента",
-    "eng": "Client Id"
-  },
-  "F_Year": {
-    "rus": "Год",
-    "eng": "Year"
-  },
-  "F_Sample_Set_ID": {
-    "rus": "Номер партии",
-    "eng": "Sample Set Id"
-  },
-  "F_Sample_Set_Index": {
     "rus": "Индекс партии",
     "eng": "Sample Set Ind"
   },

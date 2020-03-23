@@ -8,8 +8,8 @@ namespace SamplesWeighting
         public string Monitor_Set_Name     { get; set; }
         public string Monitor_Set_Number   { get; set; }
         public string Monitor_Number       { get; set; }
-        public decimal? Monitor_SLI_Weight { get; set; }
-        public decimal? Monitor_LLI_Weight { get; set; }
+        public float? Monitor_SLI_Weight { get; set; }
+        public float? Monitor_LLI_Weight { get; set; }
     }
 
     [Table("table_Monitor_Set")]
