@@ -1,5 +1,15 @@
 ﻿{
   "language": "rus",
+  "formClosing": {
+    "rus": {
+      "msg": "Вы уверены, что сохранили все данные и хотите выйти из приложения?",
+      "cpt": "Выход из приложения"
+    },
+    "eng": {
+      "msg": "Are you sure that all data is saved?",
+      "cpt": "Exit from application"
+    }
+  },
   "ToolStripMenuItemMenu": {
     "rus": "Меню",
     "eng": "Menu"
