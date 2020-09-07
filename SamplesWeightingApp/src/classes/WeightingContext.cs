@@ -1,5 +1,14 @@
+/***************************************************************************
+ *                                                                         *
+ *                                                                         *
+ * Copyright(c) 2017-2020, REGATA Experiment at FLNP|JINR                  *
+ * Author: [Boris Rumyantsev](mailto:bdrum@jinr.ru)                        *
+ * All rights reserved                                                     *
+ *                                                                         *
+ *                                                                         *
+ ***************************************************************************/
+
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace SamplesWeighting
 {
@@ -11,6 +20,8 @@ namespace SamplesWeighting
         public DbSet<SRMsSet>     SRMsSets     { get; set; }
         public DbSet<Sample>      Samples      { get; set; }
         public DbSet<SamplesSet>  SamplesSets  { get; set; }
+        public DbSet<Register>    Registers    { get; set; }
+        public DbSet<Irradiation> Irradiations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -77,6 +88,13 @@ namespace SamplesWeighting
                                    s.SRM_Set_Name,
                                    s.SRM_Set_Number
                                });
+            modelBuilder.Entity<Register>()
+                            .HasKey(s => new
+                            {
+                                s.Date_Start,
+                                s.loadNumber
+                            });
+            modelBuilder.Entity<Irradiation>().HasNoKey();
         }
 
     } // public class WeightingContext : DbContext

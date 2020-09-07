@@ -1,4 +1,14 @@
-﻿namespace SamplesWeighting
+﻿/***************************************************************************
+ *                                                                         *
+ *                                                                         *
+ * Copyright(c) 2017-2020, REGATA Experiment at FLNP|JINR                  *
+ * Author: [Boris Rumyantsev](mailto:bdrum@jinr.ru)                        *
+ * All rights reserved                                                     *
+ *                                                                         *
+ *                                                                         *
+ ***************************************************************************/
+
+namespace SamplesWeighting
 {
     partial class FaceForm
     {
@@ -49,6 +59,11 @@
             this.dataGridView_Monitors = new System.Windows.Forms.DataGridView();
             this.groupBoxMonitorsSets = new System.Windows.Forms.GroupBox();
             this.dataGridView_MonitorsSet = new System.Windows.Forms.DataGridView();
+            this.tabReweight = new System.Windows.Forms.TabPage();
+            this.groupBoxJournals = new System.Windows.Forms.GroupBox();
+            this.dataGridView_Journals = new System.Windows.Forms.DataGridView();
+            this.groupBoxIrradiations = new System.Windows.Forms.GroupBox();
+            this.dataGridView_Irradiations = new System.Windows.Forms.DataGridView();
             this.buttonReadFromFile = new System.Windows.Forms.Button();
             this.buttonSave2File = new System.Windows.Forms.Button();
             this.buttonAddRow = new System.Windows.Forms.Button();
@@ -77,6 +92,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Monitors)).BeginInit();
             this.groupBoxMonitorsSets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MonitorsSet)).BeginInit();
+            this.tabReweight.SuspendLayout();
+            this.groupBoxJournals.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Journals)).BeginInit();
+            this.groupBoxIrradiations.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Irradiations)).BeginInit();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -136,11 +156,12 @@
             this.tabs.Controls.Add(this.tabSamples);
             this.tabs.Controls.Add(this.tabStandarts);
             this.tabs.Controls.Add(this.tabMonitors);
+            this.tabs.Controls.Add(this.tabReweight);
             this.tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabs.Location = new System.Drawing.Point(2, 24);
             this.tabs.Margin = new System.Windows.Forms.Padding(4);
             this.tabs.Name = "tabs";
-            this.tabs.SelectedIndex = 0;
+            this.tabs.SelectedIndex = 3;
             this.tabs.Size = new System.Drawing.Size(962, 680);
             this.tabs.TabIndex = 4;
             // 
@@ -152,7 +173,7 @@
             this.tabSamples.Margin = new System.Windows.Forms.Padding(4);
             this.tabSamples.Name = "tabSamples";
             this.tabSamples.Padding = new System.Windows.Forms.Padding(4);
-            this.tabSamples.Size = new System.Drawing.Size(954, 674);
+            this.tabSamples.Size = new System.Drawing.Size(954, 652);
             this.tabSamples.TabIndex = 0;
             this.tabSamples.Text = "Образцы";
             this.tabSamples.UseVisualStyleBackColor = true;
@@ -235,7 +256,7 @@
             this.tabStandarts.Margin = new System.Windows.Forms.Padding(4);
             this.tabStandarts.Name = "tabStandarts";
             this.tabStandarts.Padding = new System.Windows.Forms.Padding(4);
-            this.tabStandarts.Size = new System.Drawing.Size(954, 674);
+            this.tabStandarts.Size = new System.Drawing.Size(954, 652);
             this.tabStandarts.TabIndex = 1;
             this.tabStandarts.Text = "Стандарты";
             this.tabStandarts.UseVisualStyleBackColor = true;
@@ -317,7 +338,7 @@
             this.tabMonitors.Margin = new System.Windows.Forms.Padding(4);
             this.tabMonitors.Name = "tabMonitors";
             this.tabMonitors.Padding = new System.Windows.Forms.Padding(4);
-            this.tabMonitors.Size = new System.Drawing.Size(954, 674);
+            this.tabMonitors.Size = new System.Drawing.Size(954, 652);
             this.tabMonitors.TabIndex = 2;
             this.tabMonitors.Text = "Мониторы";
             this.tabMonitors.UseVisualStyleBackColor = true;
@@ -391,6 +412,88 @@
             this.dataGridView_MonitorsSet.Size = new System.Drawing.Size(930, 315);
             this.dataGridView_MonitorsSet.TabIndex = 1;
             // 
+            // tabReweight
+            // 
+            this.tabReweight.Controls.Add(this.groupBoxJournals);
+            this.tabReweight.Controls.Add(this.groupBoxIrradiations);
+            this.tabReweight.Location = new System.Drawing.Point(4, 24);
+            this.tabReweight.Name = "tabReweight";
+            this.tabReweight.Padding = new System.Windows.Forms.Padding(3);
+            this.tabReweight.Size = new System.Drawing.Size(954, 652);
+            this.tabReweight.TabIndex = 3;
+            this.tabReweight.Text = "Перепаковка";
+            this.tabReweight.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxJournals
+            // 
+            this.groupBoxJournals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxJournals.Controls.Add(this.dataGridView_Journals);
+            this.groupBoxJournals.Location = new System.Drawing.Point(4, 8);
+            this.groupBoxJournals.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxJournals.Name = "groupBoxJournals";
+            this.groupBoxJournals.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxJournals.Size = new System.Drawing.Size(946, 338);
+            this.groupBoxJournals.TabIndex = 1;
+            this.groupBoxJournals.TabStop = false;
+            this.groupBoxJournals.Text = "Журналы облучений ДЖИ";
+            // 
+            // dataGridView_Journals
+            // 
+            this.dataGridView_Journals.AllowUserToAddRows = false;
+            this.dataGridView_Journals.AllowUserToDeleteRows = false;
+            this.dataGridView_Journals.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_Journals.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_Journals.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_Journals.CausesValidation = false;
+            this.dataGridView_Journals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Journals.Location = new System.Drawing.Point(8, 15);
+            this.dataGridView_Journals.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView_Journals.MultiSelect = false;
+            this.dataGridView_Journals.Name = "dataGridView_Journals";
+            this.dataGridView_Journals.ReadOnly = true;
+            this.dataGridView_Journals.RowHeadersVisible = false;
+            this.dataGridView_Journals.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView_Journals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_Journals.Size = new System.Drawing.Size(930, 315);
+            this.dataGridView_Journals.TabIndex = 0;
+            // 
+            // groupBoxIrradiations
+            // 
+            this.groupBoxIrradiations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxIrradiations.Controls.Add(this.dataGridView_Irradiations);
+            this.groupBoxIrradiations.Location = new System.Drawing.Point(4, 354);
+            this.groupBoxIrradiations.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxIrradiations.Name = "groupBoxIrradiations";
+            this.groupBoxIrradiations.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxIrradiations.Size = new System.Drawing.Size(946, 312);
+            this.groupBoxIrradiations.TabIndex = 2;
+            this.groupBoxIrradiations.TabStop = false;
+            this.groupBoxIrradiations.Text = "Облучения";
+            // 
+            // dataGridView_Irradiations
+            // 
+            this.dataGridView_Irradiations.AllowUserToAddRows = false;
+            this.dataGridView_Irradiations.AllowUserToDeleteRows = false;
+            this.dataGridView_Irradiations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_Irradiations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_Irradiations.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_Irradiations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Irradiations.Location = new System.Drawing.Point(8, 22);
+            this.dataGridView_Irradiations.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView_Irradiations.Name = "dataGridView_Irradiations";
+            this.dataGridView_Irradiations.RowHeadersVisible = false;
+            this.dataGridView_Irradiations.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView_Irradiations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView_Irradiations.Size = new System.Drawing.Size(930, 282);
+            this.dataGridView_Irradiations.TabIndex = 0;
+            // 
             // buttonReadFromFile
             // 
             this.buttonReadFromFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -447,7 +550,7 @@
             this.buttonReadWeight.Name = "buttonReadWeight";
             this.buttonReadWeight.Size = new System.Drawing.Size(165, 229);
             this.buttonReadWeight.TabIndex = 9;
-            this.buttonReadWeight.Text = "Взвесить";
+            this.buttonReadWeight.Text = "Считать вес";
             this.buttonReadWeight.UseVisualStyleBackColor = false;
             // 
             // openFileDialog_ReadFromFile
@@ -455,7 +558,6 @@
             this.openFileDialog_ReadFromFile.Filter = "ves files (*.ves)|*.ves|All files (*.*)|*.*";
             this.openFileDialog_ReadFromFile.RestoreDirectory = true;
             this.openFileDialog_ReadFromFile.Title = "Выберите весовой файл";
-
             // 
             // menuStripMain
             // 
@@ -484,25 +586,22 @@
             this.englishToolStripMenuItem,
             this.russianToolStripMenuItem});
             this.ToolStripMenuItemLang.Name = "ToolStripMenuItemLang";
-            this.ToolStripMenuItemLang.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItemLang.Size = new System.Drawing.Size(101, 22);
             this.ToolStripMenuItemLang.Text = "Язык";
             // 
             // englishToolStripMenuItem
             // 
             this.englishToolStripMenuItem.CheckOnClick = true;
             this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-            this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.englishToolStripMenuItem.Text = "English";
-            this.englishToolStripMenuItem.Checked = false;
-
             // 
             // russianToolStripMenuItem
             // 
             this.russianToolStripMenuItem.CheckOnClick = true;
             this.russianToolStripMenuItem.Name = "russianToolStripMenuItem";
-            this.russianToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.russianToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.russianToolStripMenuItem.Text = "Russian";
-            this.russianToolStripMenuItem.Checked = false;
             // 
             // FaceForm
             // 
@@ -542,6 +641,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Monitors)).EndInit();
             this.groupBoxMonitorsSets.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_MonitorsSet)).EndInit();
+            this.tabReweight.ResumeLayout(false);
+            this.groupBoxJournals.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Journals)).EndInit();
+            this.groupBoxIrradiations.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Irradiations)).EndInit();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.ResumeLayout(false);
@@ -582,7 +686,11 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemLang;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem russianToolStripMenuItem;
-
+        private System.Windows.Forms.TabPage tabReweight;
+        private System.Windows.Forms.GroupBox groupBoxJournals;
+        private System.Windows.Forms.DataGridView dataGridView_Journals;
+        private System.Windows.Forms.GroupBox groupBoxIrradiations;
+        private System.Windows.Forms.DataGridView dataGridView_Irradiations;
     }
 }
 

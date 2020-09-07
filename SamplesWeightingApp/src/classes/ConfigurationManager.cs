@@ -1,4 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿/***************************************************************************
+ *                                                                         *
+ *                                                                         *
+ * Copyright(c) 2017-2020, REGATA Experiment at FLNP|JINR                  *
+ * Author: [Boris Rumyantsev](mailto:bdrum@jinr.ru)                        *
+ * All rights reserved                                                     *
+ *                                                                         *
+ *                                                                         *
+ ***************************************************************************/
+
+using Microsoft.Extensions.Configuration;
 using System;
 
 namespace SamplesWeighting
@@ -12,7 +22,6 @@ namespace SamplesWeighting
             config = new ConfigurationBuilder().
                            SetBasePath(AppContext.BaseDirectory).
                            AddJsonFile("labels.json").
-                           AddUserSecrets<ConfigurationManager>().
                            Build();
 
 #if DEBUG

@@ -19,6 +19,8 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Diagnostics;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace SamplesWeighting
 {
@@ -106,10 +108,29 @@ namespace SamplesWeighting
             dataGridView_Standarts.Focus();
         }
 
-        private void SetUpColumns(ref DataGridView dgv, Type sets)
+        private void DataGridView_Journals_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridView_Irradiations.DataSource = null;
+            if (dataGridView_Journals.SelectedRows.Count <= 0) return;
+
+            var selectedRow = dataGridView_Journals.SelectedRows[0];
+
+            var ln = (int)selectedRow.Cells[1].Value;
+
+            _irads = _wc.Irradiations.FromSqlInterpolated($"exec reweighting_data {ln}").ToList();
+
+            dataGridView_Irradiations.DataSource = _irads;
+
+            SetLanguageToObject(dataGridView_Irradiations);
+            SetUpColumns(ref dataGridView_Irradiations, typeof(Irradiation), true);
+            ColorizeAndSelect(dataGridView_Irradiations);
+            dataGridView_Irradiations.Focus();
+        }
+
+        private void SetUpColumns(ref DataGridView dgv, Type sets, bool visible = false)
         {
             foreach (var sampSetProp in sets.GetProperties())
-                dgv.Columns[sampSetProp.Name].Visible = false;
+                dgv.Columns[sampSetProp.Name].Visible = visible;
             foreach (DataGridViewColumn col in dgv.Columns)
             {
                 if (!col.Name.Contains("Weight"))
