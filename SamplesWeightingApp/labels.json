@@ -214,6 +214,29 @@
   "openFileDialog_ReadFromFile": {
     "rus": "Выберите весовой файл",
     "eng": "Choose .ves file"
+  },
+  "labelName": {
+    "rus": "Образец, г",
+    "eng": "Sample, gr"
+  },
+  "labelInitWeight": {
+    "rus": "Начальный вес, г",
+    "eng": "Initial weight, gr"
+  },
+  "labelEmptyCont": {
+    "rus": "Вес пустого конт., г",
+    "eng": "Empty cont. weight, gr"
+  },
+  "labelContAndSampl": {
+    "rus": "Вес конт. с образцом, г",
+    "eng": "Cont. with sample weight, gr"
+  },
+  "labelRepackWeight": {
+    "rus": "Вес после перепак., г",
+    "eng": "Weight after repack, gr"
+  },
+  "labelDiff": {
+    "rus": "Отн. разница, %",
+    "eng": "Rel. diff, %"
   }
-
 }

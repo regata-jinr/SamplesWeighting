@@ -63,6 +63,19 @@ namespace SamplesWeighting
             this.groupBoxJournals = new System.Windows.Forms.GroupBox();
             this.dataGridView_Journals = new System.Windows.Forms.DataGridView();
             this.groupBoxIrradiations = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanelWeight = new System.Windows.Forms.TableLayoutPanel();
+            this.labelNameSampl = new System.Windows.Forms.Label();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelDiff = new System.Windows.Forms.Label();
+            this.labelInitWeight = new System.Windows.Forms.Label();
+            this.labelContAndSampl = new System.Windows.Forms.Label();
+            this.labelRepackWeight = new System.Windows.Forms.Label();
+            this.labelEmptyCont = new System.Windows.Forms.Label();
             this.dataGridView_Irradiations = new System.Windows.Forms.DataGridView();
             this.buttonReadFromFile = new System.Windows.Forms.Button();
             this.buttonSave2File = new System.Windows.Forms.Button();
@@ -96,6 +109,12 @@ namespace SamplesWeighting
             this.groupBoxJournals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Journals)).BeginInit();
             this.groupBoxIrradiations.SuspendLayout();
+            this.tableLayoutPanelWeight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Irradiations)).BeginInit();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
@@ -162,7 +181,7 @@ namespace SamplesWeighting
             this.tabs.Margin = new System.Windows.Forms.Padding(4);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 3;
-            this.tabs.Size = new System.Drawing.Size(962, 680);
+            this.tabs.Size = new System.Drawing.Size(962, 656);
             this.tabs.TabIndex = 4;
             // 
             // tabSamples
@@ -173,22 +192,21 @@ namespace SamplesWeighting
             this.tabSamples.Margin = new System.Windows.Forms.Padding(4);
             this.tabSamples.Name = "tabSamples";
             this.tabSamples.Padding = new System.Windows.Forms.Padding(4);
-            this.tabSamples.Size = new System.Drawing.Size(954, 652);
+            this.tabSamples.Size = new System.Drawing.Size(954, 628);
             this.tabSamples.TabIndex = 0;
             this.tabSamples.Text = "Образцы";
             this.tabSamples.UseVisualStyleBackColor = true;
             // 
             // groupBoxSamples
             // 
-            this.groupBoxSamples.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBoxSamples.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSamples.Controls.Add(this.dataGridView_Samples);
-            this.groupBoxSamples.Location = new System.Drawing.Point(8, 353);
+            this.groupBoxSamples.Location = new System.Drawing.Point(8, 263);
             this.groupBoxSamples.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxSamples.Name = "groupBoxSamples";
             this.groupBoxSamples.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxSamples.Size = new System.Drawing.Size(946, 312);
+            this.groupBoxSamples.Size = new System.Drawing.Size(946, 361);
             this.groupBoxSamples.TabIndex = 2;
             this.groupBoxSamples.TabStop = false;
             this.groupBoxSamples.Text = "Список образцов";
@@ -197,19 +215,17 @@ namespace SamplesWeighting
             // 
             this.dataGridView_Samples.AllowUserToAddRows = false;
             this.dataGridView_Samples.AllowUserToDeleteRows = false;
-            this.dataGridView_Samples.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_Samples.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_Samples.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_Samples.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Samples.Location = new System.Drawing.Point(8, 22);
+            this.dataGridView_Samples.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridView_Samples.Location = new System.Drawing.Point(4, 18);
             this.dataGridView_Samples.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView_Samples.Name = "dataGridView_Samples";
             this.dataGridView_Samples.RowHeadersVisible = false;
             this.dataGridView_Samples.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView_Samples.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView_Samples.Size = new System.Drawing.Size(930, 282);
+            this.dataGridView_Samples.Size = new System.Drawing.Size(938, 335);
             this.dataGridView_Samples.TabIndex = 0;
             // 
             // groupBoxSamplesSets
@@ -221,7 +237,7 @@ namespace SamplesWeighting
             this.groupBoxSamplesSets.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxSamplesSets.Name = "groupBoxSamplesSets";
             this.groupBoxSamplesSets.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxSamplesSets.Size = new System.Drawing.Size(946, 338);
+            this.groupBoxSamplesSets.Size = new System.Drawing.Size(946, 248);
             this.groupBoxSamplesSets.TabIndex = 1;
             this.groupBoxSamplesSets.TabStop = false;
             this.groupBoxSamplesSets.Text = "Партии образцов";
@@ -245,7 +261,7 @@ namespace SamplesWeighting
             this.dataGridView_SamplesSet.RowHeadersVisible = false;
             this.dataGridView_SamplesSet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView_SamplesSet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_SamplesSet.Size = new System.Drawing.Size(930, 315);
+            this.dataGridView_SamplesSet.Size = new System.Drawing.Size(930, 225);
             this.dataGridView_SamplesSet.TabIndex = 0;
             // 
             // tabStandarts
@@ -256,7 +272,7 @@ namespace SamplesWeighting
             this.tabStandarts.Margin = new System.Windows.Forms.Padding(4);
             this.tabStandarts.Name = "tabStandarts";
             this.tabStandarts.Padding = new System.Windows.Forms.Padding(4);
-            this.tabStandarts.Size = new System.Drawing.Size(954, 652);
+            this.tabStandarts.Size = new System.Drawing.Size(954, 628);
             this.tabStandarts.TabIndex = 1;
             this.tabStandarts.Text = "Стандарты";
             this.tabStandarts.UseVisualStyleBackColor = true;
@@ -271,7 +287,7 @@ namespace SamplesWeighting
             this.groupBoxStandarts.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxStandarts.Name = "groupBoxStandarts";
             this.groupBoxStandarts.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxStandarts.Size = new System.Drawing.Size(946, 312);
+            this.groupBoxStandarts.Size = new System.Drawing.Size(946, 271);
             this.groupBoxStandarts.TabIndex = 4;
             this.groupBoxStandarts.TabStop = false;
             this.groupBoxStandarts.Text = "Список стандартов";
@@ -292,7 +308,7 @@ namespace SamplesWeighting
             this.dataGridView_Standarts.RowHeadersVisible = false;
             this.dataGridView_Standarts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView_Standarts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView_Standarts.Size = new System.Drawing.Size(930, 282);
+            this.dataGridView_Standarts.Size = new System.Drawing.Size(930, 241);
             this.dataGridView_Standarts.TabIndex = 1;
             // 
             // groupBoxStandartsSets
@@ -338,7 +354,7 @@ namespace SamplesWeighting
             this.tabMonitors.Margin = new System.Windows.Forms.Padding(4);
             this.tabMonitors.Name = "tabMonitors";
             this.tabMonitors.Padding = new System.Windows.Forms.Padding(4);
-            this.tabMonitors.Size = new System.Drawing.Size(954, 652);
+            this.tabMonitors.Size = new System.Drawing.Size(954, 628);
             this.tabMonitors.TabIndex = 2;
             this.tabMonitors.Text = "Мониторы";
             this.tabMonitors.UseVisualStyleBackColor = true;
@@ -353,7 +369,7 @@ namespace SamplesWeighting
             this.groupBoxMonitors.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxMonitors.Name = "groupBoxMonitors";
             this.groupBoxMonitors.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxMonitors.Size = new System.Drawing.Size(946, 312);
+            this.groupBoxMonitors.Size = new System.Drawing.Size(946, 271);
             this.groupBoxMonitors.TabIndex = 4;
             this.groupBoxMonitors.TabStop = false;
             this.groupBoxMonitors.Text = "Список мониторов";
@@ -374,7 +390,7 @@ namespace SamplesWeighting
             this.dataGridView_Monitors.RowHeadersVisible = false;
             this.dataGridView_Monitors.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView_Monitors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView_Monitors.Size = new System.Drawing.Size(930, 282);
+            this.dataGridView_Monitors.Size = new System.Drawing.Size(930, 241);
             this.dataGridView_Monitors.TabIndex = 1;
             // 
             // groupBoxMonitorsSets
@@ -419,7 +435,7 @@ namespace SamplesWeighting
             this.tabReweight.Location = new System.Drawing.Point(4, 24);
             this.tabReweight.Name = "tabReweight";
             this.tabReweight.Padding = new System.Windows.Forms.Padding(3);
-            this.tabReweight.Size = new System.Drawing.Size(954, 652);
+            this.tabReweight.Size = new System.Drawing.Size(954, 628);
             this.tabReweight.TabIndex = 3;
             this.tabReweight.Text = "Перепаковка";
             this.tabReweight.UseVisualStyleBackColor = true;
@@ -433,7 +449,7 @@ namespace SamplesWeighting
             this.groupBoxJournals.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxJournals.Name = "groupBoxJournals";
             this.groupBoxJournals.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxJournals.Size = new System.Drawing.Size(946, 338);
+            this.groupBoxJournals.Size = new System.Drawing.Size(946, 236);
             this.groupBoxJournals.TabIndex = 1;
             this.groupBoxJournals.TabStop = false;
             this.groupBoxJournals.Text = "Журналы облучений ДЖИ";
@@ -457,7 +473,7 @@ namespace SamplesWeighting
             this.dataGridView_Journals.RowHeadersVisible = false;
             this.dataGridView_Journals.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView_Journals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Journals.Size = new System.Drawing.Size(930, 315);
+            this.dataGridView_Journals.Size = new System.Drawing.Size(930, 213);
             this.dataGridView_Journals.TabIndex = 0;
             // 
             // groupBoxIrradiations
@@ -465,15 +481,194 @@ namespace SamplesWeighting
             this.groupBoxIrradiations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxIrradiations.Controls.Add(this.tableLayoutPanelWeight);
             this.groupBoxIrradiations.Controls.Add(this.dataGridView_Irradiations);
-            this.groupBoxIrradiations.Location = new System.Drawing.Point(4, 354);
+            this.groupBoxIrradiations.Location = new System.Drawing.Point(4, 244);
             this.groupBoxIrradiations.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxIrradiations.Name = "groupBoxIrradiations";
             this.groupBoxIrradiations.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxIrradiations.Size = new System.Drawing.Size(946, 312);
+            this.groupBoxIrradiations.Size = new System.Drawing.Size(946, 380);
             this.groupBoxIrradiations.TabIndex = 2;
             this.groupBoxIrradiations.TabStop = false;
             this.groupBoxIrradiations.Text = "Облучения";
+            // 
+            // tableLayoutPanelWeight
+            // 
+            this.tableLayoutPanelWeight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanelWeight.ColumnCount = 6;
+            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
+            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
+            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
+            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
+            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
+            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66562F));
+            this.tableLayoutPanelWeight.Controls.Add(this.labelNameSampl, 0, 1);
+            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown6, 0, 1);
+            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown5, 0, 1);
+            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown4, 0, 1);
+            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown3, 0, 1);
+            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown2, 0, 1);
+            this.tableLayoutPanelWeight.Controls.Add(this.labelName, 0, 0);
+            this.tableLayoutPanelWeight.Controls.Add(this.labelDiff, 5, 0);
+            this.tableLayoutPanelWeight.Controls.Add(this.labelInitWeight, 1, 0);
+            this.tableLayoutPanelWeight.Controls.Add(this.labelContAndSampl, 3, 0);
+            this.tableLayoutPanelWeight.Controls.Add(this.labelRepackWeight, 4, 0);
+            this.tableLayoutPanelWeight.Controls.Add(this.labelEmptyCont, 2, 0);
+            this.tableLayoutPanelWeight.Location = new System.Drawing.Point(8, 280);
+            this.tableLayoutPanelWeight.Name = "tableLayoutPanelWeight";
+            this.tableLayoutPanelWeight.RowCount = 2;
+            this.tableLayoutPanelWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelWeight.Size = new System.Drawing.Size(930, 100);
+            this.tableLayoutPanelWeight.TabIndex = 3;
+            // 
+            // labelNameSampl
+            // 
+            this.labelNameSampl.AutoSize = true;
+            this.labelNameSampl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelNameSampl.Location = new System.Drawing.Point(3, 50);
+            this.labelNameSampl.Name = "labelNameSampl";
+            this.labelNameSampl.Size = new System.Drawing.Size(0, 31);
+            this.labelNameSampl.TabIndex = 1;
+            this.labelNameSampl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown6.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDown6.InterceptArrowKeys = false;
+            this.numericUpDown6.Location = new System.Drawing.Point(313, 53);
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Size = new System.Drawing.Size(149, 38);
+            this.numericUpDown6.TabIndex = 3;
+            this.numericUpDown6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown5.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDown5.InterceptArrowKeys = false;
+            this.numericUpDown5.Location = new System.Drawing.Point(158, 53);
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Size = new System.Drawing.Size(149, 38);
+            this.numericUpDown5.TabIndex = 3;
+            this.numericUpDown5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown4.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDown4.InterceptArrowKeys = false;
+            this.numericUpDown4.Location = new System.Drawing.Point(468, 53);
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(149, 38);
+            this.numericUpDown4.TabIndex = 3;
+            this.numericUpDown4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown3.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDown3.InterceptArrowKeys = false;
+            this.numericUpDown3.Location = new System.Drawing.Point(778, 53);
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(149, 38);
+            this.numericUpDown3.TabIndex = 3;
+            this.numericUpDown3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown2.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDown2.InterceptArrowKeys = false;
+            this.numericUpDown2.Location = new System.Drawing.Point(623, 53);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(149, 38);
+            this.numericUpDown2.TabIndex = 3;
+            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelName.Location = new System.Drawing.Point(3, 0);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(76, 25);
+            this.labelName.TabIndex = 1;
+            this.labelName.Text = "label1";
+            this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelDiff
+            // 
+            this.labelDiff.AutoSize = true;
+            this.labelDiff.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelDiff.Location = new System.Drawing.Point(778, 0);
+            this.labelDiff.Name = "labelDiff";
+            this.labelDiff.Size = new System.Drawing.Size(76, 25);
+            this.labelDiff.TabIndex = 1;
+            this.labelDiff.Text = "label5";
+            // 
+            // labelInitWeight
+            // 
+            this.labelInitWeight.AutoSize = true;
+            this.labelInitWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelInitWeight.Location = new System.Drawing.Point(158, 0);
+            this.labelInitWeight.Name = "labelInitWeight";
+            this.labelInitWeight.Size = new System.Drawing.Size(133, 50);
+            this.labelInitWeight.TabIndex = 1;
+            this.labelInitWeight.Text = "Начальный вес, г";
+            this.labelInitWeight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelContAndSampl
+            // 
+            this.labelContAndSampl.AutoSize = true;
+            this.labelContAndSampl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelContAndSampl.Location = new System.Drawing.Point(468, 0);
+            this.labelContAndSampl.Name = "labelContAndSampl";
+            this.labelContAndSampl.Size = new System.Drawing.Size(76, 25);
+            this.labelContAndSampl.TabIndex = 1;
+            this.labelContAndSampl.Text = "label4";
+            // 
+            // labelRepackWeight
+            // 
+            this.labelRepackWeight.AutoSize = true;
+            this.labelRepackWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelRepackWeight.Location = new System.Drawing.Point(623, 0);
+            this.labelRepackWeight.Name = "labelRepackWeight";
+            this.labelRepackWeight.Size = new System.Drawing.Size(76, 25);
+            this.labelRepackWeight.TabIndex = 1;
+            this.labelRepackWeight.Text = "label5";
+            // 
+            // labelEmptyCont
+            // 
+            this.labelEmptyCont.AutoSize = true;
+            this.labelEmptyCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelEmptyCont.Location = new System.Drawing.Point(313, 0);
+            this.labelEmptyCont.Name = "labelEmptyCont";
+            this.labelEmptyCont.Size = new System.Drawing.Size(76, 25);
+            this.labelEmptyCont.TabIndex = 1;
+            this.labelEmptyCont.Text = "label3";
             // 
             // dataGridView_Irradiations
             // 
@@ -490,8 +685,8 @@ namespace SamplesWeighting
             this.dataGridView_Irradiations.Name = "dataGridView_Irradiations";
             this.dataGridView_Irradiations.RowHeadersVisible = false;
             this.dataGridView_Irradiations.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView_Irradiations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView_Irradiations.Size = new System.Drawing.Size(930, 282);
+            this.dataGridView_Irradiations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_Irradiations.Size = new System.Drawing.Size(930, 247);
             this.dataGridView_Irradiations.TabIndex = 0;
             // 
             // buttonReadFromFile
@@ -509,7 +704,7 @@ namespace SamplesWeighting
             // buttonSave2File
             // 
             this.buttonSave2File.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonSave2File.Location = new System.Drawing.Point(972, 212);
+            this.buttonSave2File.Location = new System.Drawing.Point(972, 200);
             this.buttonSave2File.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave2File.Name = "buttonSave2File";
             this.buttonSave2File.Size = new System.Drawing.Size(165, 71);
@@ -521,7 +716,7 @@ namespace SamplesWeighting
             // 
             this.buttonAddRow.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.buttonAddRow.Enabled = false;
-            this.buttonAddRow.Location = new System.Drawing.Point(972, 313);
+            this.buttonAddRow.Location = new System.Drawing.Point(972, 301);
             this.buttonAddRow.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddRow.Name = "buttonAddRow";
             this.buttonAddRow.Size = new System.Drawing.Size(165, 71);
@@ -532,7 +727,7 @@ namespace SamplesWeighting
             // buttonSave2DB
             // 
             this.buttonSave2DB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave2DB.Location = new System.Drawing.Point(972, 392);
+            this.buttonSave2DB.Location = new System.Drawing.Point(972, 368);
             this.buttonSave2DB.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave2DB.Name = "buttonSave2DB";
             this.buttonSave2DB.Size = new System.Drawing.Size(165, 71);
@@ -545,7 +740,7 @@ namespace SamplesWeighting
             this.buttonReadWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonReadWeight.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.buttonReadWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonReadWeight.Location = new System.Drawing.Point(972, 471);
+            this.buttonReadWeight.Location = new System.Drawing.Point(972, 447);
             this.buttonReadWeight.Margin = new System.Windows.Forms.Padding(4);
             this.buttonReadWeight.Name = "buttonReadWeight";
             this.buttonReadWeight.Size = new System.Drawing.Size(165, 229);
@@ -608,7 +803,7 @@ namespace SamplesWeighting
             this.AcceptButton = this.buttonReadWeight;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 705);
+            this.ClientSize = new System.Drawing.Size(1140, 681);
             this.Controls.Add(this.buttonReadWeight);
             this.Controls.Add(this.buttonSave2DB);
             this.Controls.Add(this.buttonAddRow);
@@ -645,6 +840,13 @@ namespace SamplesWeighting
             this.groupBoxJournals.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Journals)).EndInit();
             this.groupBoxIrradiations.ResumeLayout(false);
+            this.tableLayoutPanelWeight.ResumeLayout(false);
+            this.tableLayoutPanelWeight.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Irradiations)).EndInit();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
@@ -691,6 +893,19 @@ namespace SamplesWeighting
         private System.Windows.Forms.DataGridView dataGridView_Journals;
         private System.Windows.Forms.GroupBox groupBoxIrradiations;
         private System.Windows.Forms.DataGridView dataGridView_Irradiations;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelWeight;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Label labelDiff;
+        private System.Windows.Forms.Label labelInitWeight;
+        private System.Windows.Forms.Label labelContAndSampl;
+        private System.Windows.Forms.Label labelRepackWeight;
+        private System.Windows.Forms.Label labelEmptyCont;
+        private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label labelNameSampl;
     }
 }
 

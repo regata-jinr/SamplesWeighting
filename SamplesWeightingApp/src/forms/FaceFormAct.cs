@@ -313,6 +313,14 @@ namespace SamplesWeighting
             }
         }
 
+        private void DataGridView_Irradiations_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView_Irradiations.SelectedCells.Count <= 0)
+                return;
+
+            var selectedRow = dataGridView_Irradiations.SelectedRows[0];
+            labelNameSampl.Text = $"{selectedRow.Cells[3].Value}-{selectedRow.Cells[4].Value}-{selectedRow.Cells[5].Value}";
+        }
 
     } // public partial class FaceForm : Form
 } // namespace SamplesWeighting

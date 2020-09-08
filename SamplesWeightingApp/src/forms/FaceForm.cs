@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 // TODO: Changing in the table should be automatically upload to db?
 // TODO: Changing in the table should be automatically upload to file, Year/SamplesSetKey.ves
@@ -134,9 +135,9 @@ namespace SamplesWeighting
             dataGridView_Samples.KeyPress              += FaceForm_KeyPress;
             dataGridView_Monitors.KeyPress             += FaceForm_KeyPress;
             dataGridView_Standarts.KeyPress            += FaceForm_KeyPress;
+            dataGridView_Irradiations.SelectionChanged += DataGridView_Irradiations_SelectionChanged;
         }
 
-       
         private void SetLanguageToControls(Control.ControlCollection controls)
         {
             var vers = GetType().Assembly.GetName().Version;
@@ -152,6 +153,10 @@ namespace SamplesWeighting
                 case GroupBox grpb:
                     grpb.Text = ConfigurationManager.config[$"{grpb.Name}:{lang}"];
                     SetLanguageToControls(grpb.Controls);
+                    break;
+
+                case TableLayoutPanel tblp:
+                    SetLanguageToControls(tableLayoutPanelWeight.Controls);
                     break;
 
                 case TabControl tbcont:
