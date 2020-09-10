@@ -215,28 +215,26 @@
     "rus": "Выберите весовой файл",
     "eng": "Choose .ves file"
   },
-  "labelName": {
-    "rus": "Образец, г",
-    "eng": "Sample, gr"
-  },
-  "labelInitWeight": {
+
+  "InitWght": {
     "rus": "Начальный вес, г",
     "eng": "Initial weight, gr"
   },
-  "labelEmptyCont": {
+  "EmptyContWght": {
     "rus": "Вес пустого конт., г",
     "eng": "Empty cont. weight, gr"
   },
-  "labelContAndSampl": {
+  "ContWithSampleWght": {
     "rus": "Вес конт. с образцом, г",
     "eng": "Cont. with sample weight, gr"
   },
-  "labelRepackWeight": {
+  "ARepackWght": {
     "rus": "Вес после перепак., г",
     "eng": "Weight after repack, gr"
   },
-  "labelDiff": {
+  "Diff": {
     "rus": "Отн. разница, %",
     "eng": "Rel. diff, %"
   }
+
 }

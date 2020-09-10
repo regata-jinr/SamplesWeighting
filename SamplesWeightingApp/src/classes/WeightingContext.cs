@@ -14,14 +14,14 @@ namespace SamplesWeighting
 {
     public class WeightingContext : DbContext
     {
-        public DbSet<Monitor>     Monitors     { get; set; }
-        public DbSet<MonitorsSet> MonitorsSets { get; set; }
-        public DbSet<SRM>         SRMs         { get; set; }
-        public DbSet<SRMsSet>     SRMsSets     { get; set; }
-        public DbSet<Sample>      Samples      { get; set; }
-        public DbSet<SamplesSet>  SamplesSets  { get; set; }
-        public DbSet<Register>    Registers    { get; set; }
-        public DbSet<Irradiation> Irradiations { get; set; }
+        public DbSet<Monitor>          Monitors        { get; set; }
+        public DbSet<MonitorsSet>      MonitorsSets    { get; set; }
+        public DbSet<SRM>              SRMs            { get; set; }
+        public DbSet<SRMsSet>          SRMsSets        { get; set; }
+        public DbSet<Sample>           Samples         { get; set; }
+        public DbSet<SamplesSet>       SamplesSets     { get; set; }
+        public DbSet<Irradiations>     Irradiations    { get; set; }
+        public DbSet<reweightInfo>     Reweights       { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -34,7 +34,7 @@ namespace SamplesWeighting
                                        );
         }
 
-       
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -88,13 +88,28 @@ namespace SamplesWeighting
                                    s.SRM_Set_Name,
                                    s.SRM_Set_Number
                                });
-            modelBuilder.Entity<Register>()
+            modelBuilder.Entity<Irradiations>()
                             .HasKey(s => new
                             {
                                 s.Date_Start,
-                                s.loadNumber
+                                s.loadNumber,
+                                s.Country_Code,
+                                s.Client_Id,
+                                s.Year,
+                                s.Sample_Set_Id,
+                                s.Sample_Set_Index,
+                                s.Sample_ID
                             });
-            modelBuilder.Entity<Irradiation>().HasNoKey();
+            modelBuilder.Entity<reweightInfo>().HasKey(s => new
+            {
+                s.loadNumber,
+                s.Country_Code,
+                s.Client_Id,
+                s.Year,
+                s.Sample_Set_Id,
+                s.Sample_Set_Index,
+                s.Sample_ID
+            });
         }
 
     } // public class WeightingContext : DbContext

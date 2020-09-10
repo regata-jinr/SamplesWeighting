@@ -39,11 +39,11 @@ namespace SamplesWeighting
         private readonly List<MonitorsSet> _monitorSets;
         private readonly List<SRMsSet>     _srmSets;
         private readonly List<SamplesSet>  _sampleSets;
-        private readonly List<Register> _registers;
+        private readonly List<Register>    _registers;
 
         private string lang = ConfigurationManager.config["language"];
 
-        private List<Irradiation>     _irads;
+        private List<reweightInfo>    _reweights;
         private List<SRM>             _srms;
         private List<Monitor>         _monitors;
         private List<Sample>          _samples;
@@ -66,9 +66,9 @@ namespace SamplesWeighting
             //dataGridView_SamplesSet.CurrentCell  = dataGridView_SamplesSet[0, dataGridView_SamplesSet.RowCount - 1];
             //dataGridView_Journals.CurrentCell  = dataGridView_Journals[0, dataGridView_SamplesSet.RowCount - 1];
 
-            tabDgvs.Add("tabSamples", dataGridView_Samples);
-            tabDgvs.Add("tabStandarts", dataGridView_Standarts);
-            tabDgvs.Add("tabMonitors", dataGridView_Monitors);
+            tabDgvs.Add("tabSamples",      dataGridView_Samples);
+            tabDgvs.Add("tabStandarts",    dataGridView_Standarts);
+            tabDgvs.Add("tabMonitors",     dataGridView_Monitors);
             tabDgvs.Add("tabIrradiations", dataGridView_Irradiations);
 
         }
@@ -103,15 +103,16 @@ namespace SamplesWeighting
                                         ThenBy(ss => ss.SRM_Set_Number).
                                         ToList();
 
-            _registers = _wc.Registers.Where(i => i.loadNumber != null).
+            _registers = _wc.Irradiations.Where(i => i.loadNumber != null).
+                                    Select(r => new Register { loadNumber = r.loadNumber, Date_Start = r.Date_Start }).
                                     Distinct().
                                     OrderByDescending(i=>i.loadNumber).
                                     ToList();
 
-            _samples  = new List<Sample>();
-            _srms     = new List<SRM>();
-            _monitors = new List<Monitor>();
-            _irads    = new List<Irradiation>();
+            _samples      = new List<Sample>();
+            _srms         = new List<SRM>();
+            _monitors     = new List<Monitor>();
+            _reweights    = new List<reweightInfo>();
 
             Binding();
 
@@ -123,7 +124,6 @@ namespace SamplesWeighting
             dataGridView_Journals.SelectionChanged     += DataGridView_Journals_SelectionChanged;
             englishToolStripMenuItem.CheckedChanged    += LangStripMenuItem_CheckedChanged;
             russianToolStripMenuItem.CheckedChanged    += LangStripMenuItem_CheckedChanged;
-            buttonReadWeight.Click                     += ButtonReadWeight_Click;
             FormClosing                                += FaceForm_FormClosing;
             KeyPress                                   += FaceForm_KeyPress;
             radioButtonTypeBoth.CheckedChanged         += RadioButtonsCheckedChanges;
@@ -141,7 +141,7 @@ namespace SamplesWeighting
         private void SetLanguageToControls(Control.ControlCollection controls)
         {
             var vers = GetType().Assembly.GetName().Version;
-            Text = $"{ConfigurationManager.config[$"{this.Name}:{lang}"]} - {vers.Major.ToString()}.{vers.Minor.ToString()}.{vers.Build.ToString()}";
+            Text = $"{ConfigurationManager.config[$"{Name}:{lang}"]} - {vers.Major}.{vers.Minor}.{vers.Build}";
             foreach (var cont in controls)
                 SetLanguageToObject(cont);
         }
@@ -155,9 +155,9 @@ namespace SamplesWeighting
                     SetLanguageToControls(grpb.Controls);
                     break;
 
-                case TableLayoutPanel tblp:
-                    SetLanguageToControls(tableLayoutPanelWeight.Controls);
-                    break;
+                //case TableLayoutPanel tblp:
+                //    SetLanguageToControls(tableLayoutPanelWeight.Controls);
+                //    break;
 
                 case TabControl tbcont:
                     foreach (TabPage page in tbcont.TabPages)

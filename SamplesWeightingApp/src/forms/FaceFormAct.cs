@@ -19,8 +19,9 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Diagnostics;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+
+// TODO: save data to db
 
 namespace SamplesWeighting
 {
@@ -117,12 +118,38 @@ namespace SamplesWeighting
 
             var ln = (int)selectedRow.Cells[1].Value;
 
-            _irads = _wc.Irradiations.FromSqlInterpolated($"exec reweighting_data {ln}").ToList();
+            var selectedIrrs = _wc.Irradiations.Where(i => i.loadNumber == ln && i.Country_Code != "m").ToList();
 
-            dataGridView_Irradiations.DataSource = _irads;
+            var tmpReweights = selectedIrrs.Select(i => new reweightInfo()
+            {
+                loadNumber       = i.loadNumber,
+                Country_Code     = i.Country_Code,
+                Client_Id        = i.Client_Id,
+                Year             = i.Year,
+                Sample_Set_Id    = i.Sample_Set_Id,
+                Sample_Set_Index = i.Sample_Set_Index,
+                Sample_ID        = i.Sample_ID,
+                Container_Number = i.Container_Number,
+                Position_Number  = i.Position_Number
+            }).ToList();
+
+            // FIXME: two same queries
+            _reweights = _wc.Reweights.Where(r => r.loadNumber == ln).ToList();
+
+            if (_reweights.Count != tmpReweights.Count)
+            {
+                _wc.Reweights.AddRange(tmpReweights.Except(_reweights));
+                _wc.SaveChanges();
+            }
+            _reweights = _wc.Reweights.Where(  r => r.loadNumber == ln).
+                                       OrderBy(r => r.Container_Number).
+                                       ThenBy( r => r.Position_Number).
+                                       ToList();
+
+            dataGridView_Irradiations.DataSource = _reweights;
 
             SetLanguageToObject(dataGridView_Irradiations);
-            SetUpColumns(ref dataGridView_Irradiations, typeof(Irradiation), true);
+            SetUpColumns(ref dataGridView_Irradiations, typeof(reweightInfoSet));
             ColorizeAndSelect(dataGridView_Irradiations);
             dataGridView_Irradiations.Focus();
         }
@@ -133,7 +160,7 @@ namespace SamplesWeighting
                 dgv.Columns[sampSetProp.Name].Visible = visible;
             foreach (DataGridViewColumn col in dgv.Columns)
             {
-                if (!col.Name.Contains("Weight"))
+                if (!col.Name.Contains("Weight") && !col.Name.Contains("Empty") && !col.Name.Contains("WithSampl"))
                     col.ReadOnly = true;
             }
         }
@@ -155,48 +182,72 @@ namespace SamplesWeighting
 
         private void ButtonReadWeight_Click(object sender, EventArgs e)
         {
-            var unitDgv = tabDgvs[tabs.SelectedTab.Name];
-
             try
             {
-                buttonReadWeight.Enabled = false;
-                currRowIndex = unitDgv.CurrentCellAddress.Y;
-                currColIndex = unitDgv.CurrentCellAddress.X;
-                if (unitDgv.DataSource == null)
-                {
-                    MessageBox.Show("Please choose one of the lines from the top table.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (dataGridView_Irradiations.SelectedCells.Count <= 0) return;
+                var selectedColumnName = dataGridView_Irradiations.SelectedCells[0].OwningColumn.Name;
+                var selectedCell = dataGridView_Irradiations.SelectedCells[0];
+                var row = selectedCell.RowIndex;
+                var col = selectedCell.ColumnIndex;
+                if (selectedColumnName != "EmptyContWght" && selectedColumnName != "ContWithSampleWght")
                     return;
-                }
 
-                //unitDgv.Rows[currRowIndex].Cells[currColIndex].Value = Weighting();
-
-                if (radioButtonTypeBoth.Checked)
-                {
-                    if (unitDgv.Columns[currColIndex].Name.Contains("LLI"))
-                    {
-                        if ((currRowIndex + 1) == unitDgv.RowCount) return;
-                        unitDgv.CurrentCell = unitDgv.Rows[currRowIndex + 1].Cells[currColIndex - 1];
-                        unitDgv.Rows[currRowIndex + 1].Cells[currColIndex - 1].Selected = true;
-                    }
-                    else if (unitDgv.Columns[currColIndex].Name.Contains("SLI"))
-                    {
-                        unitDgv.CurrentCell = unitDgv.Rows[currRowIndex].Cells[currColIndex + 1];
-                        unitDgv.Rows[currRowIndex].Cells[currColIndex + 1].Selected = true;
-                    }
-                }
-                else
-                {
-                    if ((currRowIndex + 1) == unitDgv.RowCount) return;
-                    unitDgv.CurrentCell = unitDgv.Rows[currRowIndex + 1].Cells[currColIndex];
-                    unitDgv.Rows[currRowIndex + 1].Cells[currColIndex].Selected = true;
-                }
+                // FIXME: 3 exceptions in case of scales not found
+                //selectedCell.Value = Scales.GetWeight();
+                selectedCell.Value = (float)10.0;
+                if (row + 1 == dataGridView_Irradiations.RowCount) return;
+                dataGridView_Irradiations[col, row+1].Selected = true;
             }
-            finally
+            catch (InvalidOperationException ioe)
             {
-                //PrepareForSavingFile(false);
-                buttonReadWeight.Enabled = true;
-                unitDgv.Focus();
+                MessageBox.Show(ioe.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //var unitDgv = tabDgvs[tabs.SelectedTab.Name];
+
+            //try
+            //{
+            //    buttonReadWeight.Enabled = false;
+            //    currRowIndex = unitDgv.CurrentCellAddress.Y;
+            //    currColIndex = unitDgv.CurrentCellAddress.X;
+            //    if (unitDgv.DataSource == null)
+            //    {
+            //        MessageBox.Show("Please choose one of the lines from the top table.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
+
+            //    //unitDgv.Rows[currRowIndex].Cells[currColIndex].Value = Weighting();
+
+            //    if (radioButtonTypeBoth.Checked)
+            //    {
+            //        if (unitDgv.Columns[currColIndex].Name.Contains("LLI"))
+            //        {
+            //            if ((currRowIndex + 1) == unitDgv.RowCount) return;
+            //            unitDgv.CurrentCell = unitDgv.Rows[currRowIndex + 1].Cells[currColIndex - 1];
+            //            unitDgv.Rows[currRowIndex + 1].Cells[currColIndex - 1].Selected = true;
+            //        }
+            //        else if (unitDgv.Columns[currColIndex].Name.Contains("SLI"))
+            //        {
+            //            unitDgv.CurrentCell = unitDgv.Rows[currRowIndex].Cells[currColIndex + 1];
+            //            unitDgv.Rows[currRowIndex].Cells[currColIndex + 1].Selected = true;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if ((currRowIndex + 1) == unitDgv.RowCount) return;
+            //        unitDgv.CurrentCell = unitDgv.Rows[currRowIndex + 1].Cells[currColIndex];
+            //        unitDgv.Rows[currRowIndex + 1].Cells[currColIndex].Selected = true;
+            //    }
+            //}
+            //finally
+            //{
+            //    //PrepareForSavingFile(false);
+            //    buttonReadWeight.Enabled = true;
+            //    unitDgv.Focus();
+            //}
         }
 
         private void RadioButtonsCheckedChanges(object sender, EventArgs e)
@@ -318,8 +369,7 @@ namespace SamplesWeighting
             if (dataGridView_Irradiations.SelectedCells.Count <= 0)
                 return;
 
-            var selectedRow = dataGridView_Irradiations.SelectedRows[0];
-            labelNameSampl.Text = $"{selectedRow.Cells[3].Value}-{selectedRow.Cells[4].Value}-{selectedRow.Cells[5].Value}";
+            //var selectedRow = dataGridView_Irradiations.SelectedRows[0];
         }
 
     } // public partial class FaceForm : Form

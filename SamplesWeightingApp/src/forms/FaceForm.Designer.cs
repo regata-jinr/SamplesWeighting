@@ -63,19 +63,6 @@ namespace SamplesWeighting
             this.groupBoxJournals = new System.Windows.Forms.GroupBox();
             this.dataGridView_Journals = new System.Windows.Forms.DataGridView();
             this.groupBoxIrradiations = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanelWeight = new System.Windows.Forms.TableLayoutPanel();
-            this.labelNameSampl = new System.Windows.Forms.Label();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelDiff = new System.Windows.Forms.Label();
-            this.labelInitWeight = new System.Windows.Forms.Label();
-            this.labelContAndSampl = new System.Windows.Forms.Label();
-            this.labelRepackWeight = new System.Windows.Forms.Label();
-            this.labelEmptyCont = new System.Windows.Forms.Label();
             this.dataGridView_Irradiations = new System.Windows.Forms.DataGridView();
             this.buttonReadFromFile = new System.Windows.Forms.Button();
             this.buttonSave2File = new System.Windows.Forms.Button();
@@ -109,12 +96,6 @@ namespace SamplesWeighting
             this.groupBoxJournals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Journals)).BeginInit();
             this.groupBoxIrradiations.SuspendLayout();
-            this.tableLayoutPanelWeight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Irradiations)).BeginInit();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
@@ -481,7 +462,6 @@ namespace SamplesWeighting
             this.groupBoxIrradiations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxIrradiations.Controls.Add(this.tableLayoutPanelWeight);
             this.groupBoxIrradiations.Controls.Add(this.dataGridView_Irradiations);
             this.groupBoxIrradiations.Location = new System.Drawing.Point(4, 244);
             this.groupBoxIrradiations.Margin = new System.Windows.Forms.Padding(4);
@@ -491,184 +471,6 @@ namespace SamplesWeighting
             this.groupBoxIrradiations.TabIndex = 2;
             this.groupBoxIrradiations.TabStop = false;
             this.groupBoxIrradiations.Text = "Облучения";
-            // 
-            // tableLayoutPanelWeight
-            // 
-            this.tableLayoutPanelWeight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanelWeight.ColumnCount = 6;
-            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
-            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
-            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
-            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
-            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66687F));
-            this.tableLayoutPanelWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66562F));
-            this.tableLayoutPanelWeight.Controls.Add(this.labelNameSampl, 0, 1);
-            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown6, 0, 1);
-            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown5, 0, 1);
-            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown4, 0, 1);
-            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown3, 0, 1);
-            this.tableLayoutPanelWeight.Controls.Add(this.numericUpDown2, 0, 1);
-            this.tableLayoutPanelWeight.Controls.Add(this.labelName, 0, 0);
-            this.tableLayoutPanelWeight.Controls.Add(this.labelDiff, 5, 0);
-            this.tableLayoutPanelWeight.Controls.Add(this.labelInitWeight, 1, 0);
-            this.tableLayoutPanelWeight.Controls.Add(this.labelContAndSampl, 3, 0);
-            this.tableLayoutPanelWeight.Controls.Add(this.labelRepackWeight, 4, 0);
-            this.tableLayoutPanelWeight.Controls.Add(this.labelEmptyCont, 2, 0);
-            this.tableLayoutPanelWeight.Location = new System.Drawing.Point(8, 280);
-            this.tableLayoutPanelWeight.Name = "tableLayoutPanelWeight";
-            this.tableLayoutPanelWeight.RowCount = 2;
-            this.tableLayoutPanelWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelWeight.Size = new System.Drawing.Size(930, 100);
-            this.tableLayoutPanelWeight.TabIndex = 3;
-            // 
-            // labelNameSampl
-            // 
-            this.labelNameSampl.AutoSize = true;
-            this.labelNameSampl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelNameSampl.Location = new System.Drawing.Point(3, 50);
-            this.labelNameSampl.Name = "labelNameSampl";
-            this.labelNameSampl.Size = new System.Drawing.Size(0, 31);
-            this.labelNameSampl.TabIndex = 1;
-            this.labelNameSampl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // numericUpDown6
-            // 
-            this.numericUpDown6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown6.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numericUpDown6.InterceptArrowKeys = false;
-            this.numericUpDown6.Location = new System.Drawing.Point(313, 53);
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(149, 38);
-            this.numericUpDown6.TabIndex = 3;
-            this.numericUpDown6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // numericUpDown5
-            // 
-            this.numericUpDown5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown5.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numericUpDown5.InterceptArrowKeys = false;
-            this.numericUpDown5.Location = new System.Drawing.Point(158, 53);
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(149, 38);
-            this.numericUpDown5.TabIndex = 3;
-            this.numericUpDown5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown4.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numericUpDown4.InterceptArrowKeys = false;
-            this.numericUpDown4.Location = new System.Drawing.Point(468, 53);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(149, 38);
-            this.numericUpDown4.TabIndex = 3;
-            this.numericUpDown4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown3.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numericUpDown3.InterceptArrowKeys = false;
-            this.numericUpDown3.Location = new System.Drawing.Point(778, 53);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(149, 38);
-            this.numericUpDown3.TabIndex = 3;
-            this.numericUpDown3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown2.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numericUpDown2.InterceptArrowKeys = false;
-            this.numericUpDown2.Location = new System.Drawing.Point(623, 53);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(149, 38);
-            this.numericUpDown2.TabIndex = 3;
-            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // labelName
-            // 
-            this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelName.Location = new System.Drawing.Point(3, 0);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(76, 25);
-            this.labelName.TabIndex = 1;
-            this.labelName.Text = "label1";
-            this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelDiff
-            // 
-            this.labelDiff.AutoSize = true;
-            this.labelDiff.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelDiff.Location = new System.Drawing.Point(778, 0);
-            this.labelDiff.Name = "labelDiff";
-            this.labelDiff.Size = new System.Drawing.Size(76, 25);
-            this.labelDiff.TabIndex = 1;
-            this.labelDiff.Text = "label5";
-            // 
-            // labelInitWeight
-            // 
-            this.labelInitWeight.AutoSize = true;
-            this.labelInitWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelInitWeight.Location = new System.Drawing.Point(158, 0);
-            this.labelInitWeight.Name = "labelInitWeight";
-            this.labelInitWeight.Size = new System.Drawing.Size(133, 50);
-            this.labelInitWeight.TabIndex = 1;
-            this.labelInitWeight.Text = "Начальный вес, г";
-            this.labelInitWeight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelContAndSampl
-            // 
-            this.labelContAndSampl.AutoSize = true;
-            this.labelContAndSampl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelContAndSampl.Location = new System.Drawing.Point(468, 0);
-            this.labelContAndSampl.Name = "labelContAndSampl";
-            this.labelContAndSampl.Size = new System.Drawing.Size(76, 25);
-            this.labelContAndSampl.TabIndex = 1;
-            this.labelContAndSampl.Text = "label4";
-            // 
-            // labelRepackWeight
-            // 
-            this.labelRepackWeight.AutoSize = true;
-            this.labelRepackWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelRepackWeight.Location = new System.Drawing.Point(623, 0);
-            this.labelRepackWeight.Name = "labelRepackWeight";
-            this.labelRepackWeight.Size = new System.Drawing.Size(76, 25);
-            this.labelRepackWeight.TabIndex = 1;
-            this.labelRepackWeight.Text = "label5";
-            // 
-            // labelEmptyCont
-            // 
-            this.labelEmptyCont.AutoSize = true;
-            this.labelEmptyCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelEmptyCont.Location = new System.Drawing.Point(313, 0);
-            this.labelEmptyCont.Name = "labelEmptyCont";
-            this.labelEmptyCont.Size = new System.Drawing.Size(76, 25);
-            this.labelEmptyCont.TabIndex = 1;
-            this.labelEmptyCont.Text = "label3";
             // 
             // dataGridView_Irradiations
             // 
@@ -682,11 +484,12 @@ namespace SamplesWeighting
             this.dataGridView_Irradiations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Irradiations.Location = new System.Drawing.Point(8, 22);
             this.dataGridView_Irradiations.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView_Irradiations.MultiSelect = false;
             this.dataGridView_Irradiations.Name = "dataGridView_Irradiations";
             this.dataGridView_Irradiations.RowHeadersVisible = false;
             this.dataGridView_Irradiations.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView_Irradiations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Irradiations.Size = new System.Drawing.Size(930, 247);
+            this.dataGridView_Irradiations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView_Irradiations.Size = new System.Drawing.Size(930, 354);
             this.dataGridView_Irradiations.TabIndex = 0;
             // 
             // buttonReadFromFile
@@ -747,6 +550,7 @@ namespace SamplesWeighting
             this.buttonReadWeight.TabIndex = 9;
             this.buttonReadWeight.Text = "Считать вес";
             this.buttonReadWeight.UseVisualStyleBackColor = false;
+            this.buttonReadWeight.Click += new System.EventHandler(this.ButtonReadWeight_Click);
             // 
             // openFileDialog_ReadFromFile
             // 
@@ -840,13 +644,6 @@ namespace SamplesWeighting
             this.groupBoxJournals.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Journals)).EndInit();
             this.groupBoxIrradiations.ResumeLayout(false);
-            this.tableLayoutPanelWeight.ResumeLayout(false);
-            this.tableLayoutPanelWeight.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Irradiations)).EndInit();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
@@ -893,19 +690,6 @@ namespace SamplesWeighting
         private System.Windows.Forms.DataGridView dataGridView_Journals;
         private System.Windows.Forms.GroupBox groupBoxIrradiations;
         private System.Windows.Forms.DataGridView dataGridView_Irradiations;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelWeight;
-        private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.Label labelDiff;
-        private System.Windows.Forms.Label labelInitWeight;
-        private System.Windows.Forms.Label labelContAndSampl;
-        private System.Windows.Forms.Label labelRepackWeight;
-        private System.Windows.Forms.Label labelEmptyCont;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.Label labelNameSampl;
     }
 }
 
