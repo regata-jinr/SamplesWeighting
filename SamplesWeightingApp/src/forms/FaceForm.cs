@@ -135,7 +135,6 @@ namespace SamplesWeighting
             dataGridView_Samples.KeyPress              += FaceForm_KeyPress;
             dataGridView_Monitors.KeyPress             += FaceForm_KeyPress;
             dataGridView_Standarts.KeyPress            += FaceForm_KeyPress;
-            dataGridView_Irradiations.SelectionChanged += DataGridView_Irradiations_SelectionChanged;
         }
 
         private void SetLanguageToControls(Control.ControlCollection controls)
@@ -144,6 +143,12 @@ namespace SamplesWeighting
             Text = $"{ConfigurationManager.config[$"{Name}:{lang}"]} - {vers.Major}.{vers.Minor}.{vers.Build}";
             foreach (var cont in controls)
                 SetLanguageToObject(cont);
+        }
+
+        private void buttonSave2DB_Click(object sender, EventArgs e)
+        {
+            _wc.Reweights.UpdateRange(_reweights);
+            _wc.SaveChanges();
         }
 
         private void SetLanguageToObject(object cont)

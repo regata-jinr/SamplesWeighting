@@ -13,9 +13,6 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
-using System.Linq;
-
 
 namespace SamplesWeighting
 {
@@ -29,7 +26,8 @@ namespace SamplesWeighting
             try
             {
                 Debug.WriteLine($"Trying to connect to the scales:");
-                string com = FindScales();
+                //string com = FindScales();
+                string com = ConfigurationManager.ComPort;
                 Debug.WriteLine($"The port number is '{com}'");
                 if (string.IsNullOrEmpty(com))
                 {
@@ -61,15 +59,11 @@ namespace SamplesWeighting
                 if (port == null) throw new InvalidOperationException("Can't get data from the scales!");
                 port.Open();
                 float weight = -1.0f;
-                Match match = Regex.Match(port.ReadLine(), "^.*([0-9]+\\.[0-9]+).*$");
-                if (match.Success)
+                port.ReadExisting();
+                string weightstr = port.ReadLine().Replace("\r", "");
+                if (!float.TryParse(weightstr,out weight))
                 {
-                    weight = Convert.ToSingle(match.Groups[1].Value, CultureInfo.InvariantCulture);
-                    Debug.WriteLine($"Reading weight is {weight}");
-                }
-                else
-                {
-                    throw new InvalidOperationException("Can't get data from the scales!");
+                    throw new InvalidOperationException("Can't get data from the scales! Try to repeat operation!");
                 }
                 return weight;
             }
@@ -79,12 +73,13 @@ namespace SamplesWeighting
             }
         }
 
+        // TODO: check such scale search
         private static string FindScales()
         {
             foreach (var portName in SerialPort.GetPortNames())
             {
                 if (portName.Contains("DN02GDZ6A"))
-                    return Regex.Match(portName, @"\(([^)]*)\)").Groups[1].Value;
+                    return portName;
             }
             return "";
         }

@@ -13,7 +13,7 @@ using System;
 
 namespace SamplesWeighting
 {
-    internal class ConfigurationManager
+    internal static  class ConfigurationManager
     {
         public static readonly IConfiguration config;
 
@@ -23,7 +23,7 @@ namespace SamplesWeighting
                            SetBasePath(AppContext.BaseDirectory).
                            AddJsonFile("labels.json").
                            Build();
-
+            ComPort = config["COM"];
 #if DEBUG
             ConnectionString = @"Data Source=RUMLAB\REGATALOCAL;Initial Catalog=NAA_DB_TEST;Integrated Security=True;User ID=bdrum";
             config["ConnectionString"] = ConnectionString;
@@ -33,6 +33,8 @@ namespace SamplesWeighting
         }
 
         public static readonly string ConnectionString;
+
+        public static readonly string ComPort;
 
     }
 }

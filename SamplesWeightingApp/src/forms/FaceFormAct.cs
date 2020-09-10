@@ -22,6 +22,8 @@ using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
 // TODO: save data to db
+// TODO: fill init weight field 
+// TODO: add credentials via windows cred manager with name WeightingApp
 
 namespace SamplesWeighting
 {
@@ -118,23 +120,27 @@ namespace SamplesWeighting
 
             var ln = (int)selectedRow.Cells[1].Value;
 
-            var selectedIrrs = _wc.Irradiations.Where(i => i.loadNumber == ln && i.Country_Code != "m").ToList();
+            _reweights = _wc.Reweights.Where(r => r.loadNumber == ln).ToList();
 
-            var tmpReweights = selectedIrrs.Select(i => new reweightInfo()
-            {
-                loadNumber       = i.loadNumber,
-                Country_Code     = i.Country_Code,
-                Client_Id        = i.Client_Id,
-                Year             = i.Year,
-                Sample_Set_Id    = i.Sample_Set_Id,
-                Sample_Set_Index = i.Sample_Set_Index,
-                Sample_ID        = i.Sample_ID,
-                Container_Number = i.Container_Number,
-                Position_Number  = i.Position_Number
-            }).ToList();
+            var tmpReweights = _wc.Reweights.FromSqlInterpolated($"exec reweighting_data {ln}").ToList();
+
+            //var selectedIrrs = _wc.Irradiations.Where(i => i.loadNumber == ln && i.Country_Code != "m").ToList();
+
+
+            //var tmpReweights = selectedIrrs.Select(i => new reweightInfo()
+            //{
+            //    loadNumber       = i.loadNumber,
+            //    Country_Code     = i.Country_Code,
+            //    Client_Id        = i.Client_Id,
+            //    Year             = i.Year,
+            //    Sample_Set_Id    = i.Sample_Set_Id,
+            //    Sample_Set_Index = i.Sample_Set_Index,
+            //    Sample_ID        = i.Sample_ID,
+            //    Container_Number = i.Container_Number,
+            //    Position_Number  = i.Position_Number
+            //}).ToList();
 
             // FIXME: two same queries
-            _reweights = _wc.Reweights.Where(r => r.loadNumber == ln).ToList();
 
             if (_reweights.Count != tmpReweights.Count)
             {
@@ -193,10 +199,28 @@ namespace SamplesWeighting
                     return;
 
                 // FIXME: 3 exceptions in case of scales not found
-                //selectedCell.Value = Scales.GetWeight();
-                selectedCell.Value = (float)10.0;
+                selectedCell.Value = Scales.GetWeight();
+                //selectedCell.Value = (float)0.225;
                 if (row + 1 == dataGridView_Irradiations.RowCount) return;
                 dataGridView_Irradiations[col, row+1].Selected = true;
+
+                var initw = dataGridView_Irradiations.Rows[row].Cells["InitWght"].Value;
+                var emptyContCell = dataGridView_Irradiations.Rows[row].Cells["EmptyContWght"].Value;
+                var ContWithSample = dataGridView_Irradiations.Rows[row].Cells["ContWithSampleWght"].Value;
+                var ARepack = dataGridView_Irradiations.Rows[row].Cells["ARepackWght"].Value;
+                var diff = dataGridView_Irradiations.Rows[row].Cells["Diff"].Value;
+
+                if (ContWithSample != null && emptyContCell != null && initw != null)
+                {
+                    ARepack = (float)ContWithSample - (float)emptyContCell;
+                    if ((float)initw == 0) diff = 100;
+                    else diff = 100 * ((float)initw - (float)ARepack) / (float)initw;
+                    dataGridView_Irradiations.Rows[row].Cells["ARepackWght"].Value = ARepack;
+                    dataGridView_Irradiations.Rows[row].Cells["Diff"].Value = diff;
+                }
+                _wc.Reweights.Update(_reweights[row]);
+                _wc.SaveChanges();
+
             }
             catch (InvalidOperationException ioe)
             {
@@ -363,14 +387,6 @@ namespace SamplesWeighting
                 if (isFirst && !dgv.Name.Contains("Set") && dgv.RowCount != 0) dgv.ClearSelection();
             }
         }
-
-        private void DataGridView_Irradiations_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView_Irradiations.SelectedCells.Count <= 0)
-                return;
-
-            //var selectedRow = dataGridView_Irradiations.SelectedRows[0];
-        }
-
+       
     } // public partial class FaceForm : Form
 } // namespace SamplesWeighting
