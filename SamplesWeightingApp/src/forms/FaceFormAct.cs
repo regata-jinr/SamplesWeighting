@@ -1,7 +1,7 @@
 ﻿/***************************************************************************
  *                                                                         *
  *                                                                         *
- * Copyright(c) 2017-2020, REGATA Experiment at FLNP|JINR                  *
+ * Copyright(c) 2020, REGATA Experiment at FLNP|JINR                  *
  * Author: [Boris Rumyantsev](mailto:bdrum@jinr.ru)                        *
  * All rights reserved                                                     *
  *                                                                         *
@@ -21,13 +21,9 @@ using System.Linq;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
-// TODO: save data to db
-// TODO: fill init weight field 
-// TODO: add credentials via windows cred manager with name WeightingApp
-
 namespace SamplesWeighting
 {
-    public partial class FaceForm : Form
+    public partial class FaceForm
     {
         private void LangStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
@@ -111,10 +107,14 @@ namespace SamplesWeighting
             dataGridView_Standarts.Focus();
         }
 
+        private bool _isDGVFilling;
+
         private void DataGridView_Journals_SelectionChanged(object sender, EventArgs e)
         {
             dataGridView_Irradiations.DataSource = null;
+            _isDGVFilling = true;
             if (dataGridView_Journals.SelectedRows.Count <= 0) return;
+
 
             var selectedRow = dataGridView_Journals.SelectedRows[0];
 
@@ -123,24 +123,6 @@ namespace SamplesWeighting
             _reweights = _wc.Reweights.Where(r => r.loadNumber == ln).ToList();
 
             var tmpReweights = _wc.Reweights.FromSqlInterpolated($"exec reweighting_data {ln}").ToList();
-
-            //var selectedIrrs = _wc.Irradiations.Where(i => i.loadNumber == ln && i.Country_Code != "m").ToList();
-
-
-            //var tmpReweights = selectedIrrs.Select(i => new reweightInfo()
-            //{
-            //    loadNumber       = i.loadNumber,
-            //    Country_Code     = i.Country_Code,
-            //    Client_Id        = i.Client_Id,
-            //    Year             = i.Year,
-            //    Sample_Set_Id    = i.Sample_Set_Id,
-            //    Sample_Set_Index = i.Sample_Set_Index,
-            //    Sample_ID        = i.Sample_ID,
-            //    Container_Number = i.Container_Number,
-            //    Position_Number  = i.Position_Number
-            //}).ToList();
-
-            // FIXME: two same queries
 
             if (_reweights.Count != tmpReweights.Count)
             {
@@ -158,6 +140,7 @@ namespace SamplesWeighting
             SetUpColumns(ref dataGridView_Irradiations, typeof(reweightInfoSet));
             ColorizeAndSelect(dataGridView_Irradiations);
             dataGridView_Irradiations.Focus();
+            _isDGVFilling = false;
         }
 
         private void SetUpColumns(ref DataGridView dgv, Type sets, bool visible = false)
@@ -168,6 +151,11 @@ namespace SamplesWeighting
             {
                 if (!col.Name.Contains("Weight") && !col.Name.Contains("Empty") && !col.Name.Contains("WithSampl"))
                     col.ReadOnly = true;
+                if (col.Name.Contains("Diff"))
+                    col.DefaultCellStyle.Format = $"f{ConfigurationManager.AccuracyDiff}";
+                if (col.Name.Contains("Weight") || col.Name.Contains("Wght"))
+                    col.DefaultCellStyle.Format = $"f{ConfigurationManager.AccuracyWeight}";
+
             }
         }
 
@@ -186,6 +174,35 @@ namespace SamplesWeighting
             }
         }
 
+        private void DataGridView_Irradiations_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (_isDGVFilling) return;
+            if (!dataGridView_Irradiations.Columns[e.ColumnIndex].Name.Contains("Wght")) return;
+
+
+            var row = e.RowIndex;
+            var initw = dataGridView_Irradiations.Rows[row].Cells["InitWght"].Value;
+            var emptyContCell = dataGridView_Irradiations.Rows[row].Cells["EmptyContWght"].Value;
+            var ContWithSample = dataGridView_Irradiations.Rows[row].Cells["ContWithSampleWght"].Value;
+            var ARepack = dataGridView_Irradiations.Rows[row].Cells["ARepackWght"].Value;
+            var diff = dataGridView_Irradiations.Rows[row].Cells["Diff"].Value;
+
+            if (ContWithSample != null && emptyContCell != null && initw != null)
+            {
+                ARepack = (float)ContWithSample - (float)emptyContCell;
+                if ((float)initw == 0) diff = 100;
+                else diff = 100 * ((float)initw - (float)ARepack) / (float)initw;
+                dataGridView_Irradiations.Rows[row].Cells["ARepackWght"].Value = ARepack;
+                dataGridView_Irradiations.Rows[row].Cells["Diff"].Value = diff;
+            }
+            _wc.Reweights.Update(_reweights[row]);
+            _wc.SaveChanges();
+
+
+
+        }
+
+
         private void ButtonReadWeight_Click(object sender, EventArgs e)
         {
             try
@@ -198,28 +215,29 @@ namespace SamplesWeighting
                 if (selectedColumnName != "EmptyContWght" && selectedColumnName != "ContWithSampleWght")
                     return;
 
-                // FIXME: 3 exceptions in case of scales not found
                 selectedCell.Value = Scales.GetWeight();
+                DataGridView_Irradiations_CellValueChanged(selectedCell, new DataGridViewCellEventArgs(col, row));
+
                 //selectedCell.Value = (float)0.225;
                 if (row + 1 == dataGridView_Irradiations.RowCount) return;
                 dataGridView_Irradiations[col, row+1].Selected = true;
 
-                var initw = dataGridView_Irradiations.Rows[row].Cells["InitWght"].Value;
-                var emptyContCell = dataGridView_Irradiations.Rows[row].Cells["EmptyContWght"].Value;
-                var ContWithSample = dataGridView_Irradiations.Rows[row].Cells["ContWithSampleWght"].Value;
-                var ARepack = dataGridView_Irradiations.Rows[row].Cells["ARepackWght"].Value;
-                var diff = dataGridView_Irradiations.Rows[row].Cells["Diff"].Value;
+                //var initw = dataGridView_Irradiations.Rows[row].Cells["InitWght"].Value;
+                //var emptyContCell = dataGridView_Irradiations.Rows[row].Cells["EmptyContWght"].Value;
+                //var ContWithSample = dataGridView_Irradiations.Rows[row].Cells["ContWithSampleWght"].Value;
+                //var ARepack = dataGridView_Irradiations.Rows[row].Cells["ARepackWght"].Value;
+                //var diff = dataGridView_Irradiations.Rows[row].Cells["Diff"].Value;
 
-                if (ContWithSample != null && emptyContCell != null && initw != null)
-                {
-                    ARepack = (float)ContWithSample - (float)emptyContCell;
-                    if ((float)initw == 0) diff = 100;
-                    else diff = 100 * ((float)initw - (float)ARepack) / (float)initw;
-                    dataGridView_Irradiations.Rows[row].Cells["ARepackWght"].Value = ARepack;
-                    dataGridView_Irradiations.Rows[row].Cells["Diff"].Value = diff;
-                }
-                _wc.Reweights.Update(_reweights[row]);
-                _wc.SaveChanges();
+                //if (ContWithSample != null && emptyContCell != null && initw != null)
+                //{
+                //    ARepack = (float)ContWithSample - (float)emptyContCell;
+                //    if ((float)initw == 0) diff = 100;
+                //    else diff = 100 * ((float)initw - (float)ARepack) / (float)initw;
+                //    dataGridView_Irradiations.Rows[row].Cells["ARepackWght"].Value = ARepack;
+                //    dataGridView_Irradiations.Rows[row].Cells["Diff"].Value = diff;
+                //}
+                //_wc.Reweights.Update(_reweights[row]);
+                //_wc.SaveChanges();
 
             }
             catch (InvalidOperationException ioe)
@@ -351,6 +369,18 @@ namespace SamplesWeighting
                 }
                 dgv.Rows[r].Cells[0].Style = styleWhite;
             }
+        }
+
+        private int _prevSelectedRowIndex = 0;
+
+        private void DataGridView_Standarts_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView_Irradiations.SelectedCells.Count == 0) return;
+            if (!dataGridView_Irradiations.Focused) return;
+            var selectedRow = dataGridView_Irradiations.SelectedCells[0].OwningRow;
+            dataGridView_Irradiations.Rows[_prevSelectedRowIndex].DefaultCellStyle.BackColor = Color.White;
+            selectedRow.DefaultCellStyle.BackColor = Color.LightGray;
+            _prevSelectedRowIndex = selectedRow.Index;
         }
 
         private void FaceForm_KeyPress(object sender, KeyPressEventArgs e)

@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Serialization;
 
 // TODO: Changing in the table should be automatically upload to db?
 // TODO: Changing in the table should be automatically upload to file, Year/SamplesSetKey.ves
@@ -30,6 +29,11 @@ using Newtonsoft.Json.Serialization;
 // TODO: add new auto update process
 // TODO: add github actions for ci/cd
 // TODO: add tests via winappdriver
+// TODO: move reweighting procedure and table to prod db
+
+
+// TODO: https://github.com/regata-jinr/SamplesWeighting/issues/11
+// TODO: https://github.com/regata-jinr/SamplesWeighting/issues/10
 
 namespace SamplesWeighting
 {
@@ -69,7 +73,7 @@ namespace SamplesWeighting
             tabDgvs.Add("tabSamples",      dataGridView_Samples);
             tabDgvs.Add("tabStandarts",    dataGridView_Standarts);
             tabDgvs.Add("tabMonitors",     dataGridView_Monitors);
-            tabDgvs.Add("tabIrradiations", dataGridView_Irradiations);
+            tabDgvs.Add("tabReweight",     dataGridView_Irradiations);
 
         }
 
@@ -132,6 +136,8 @@ namespace SamplesWeighting
             dataGridView_Samples.SelectionChanged      += CommonSelectionMechanics;
             dataGridView_Monitors.SelectionChanged     += CommonSelectionMechanics;
             dataGridView_Standarts.SelectionChanged    += CommonSelectionMechanics;
+            dataGridView_Irradiations.SelectionChanged += DataGridView_Standarts_SelectionChanged;
+            dataGridView_Irradiations.CellValueChanged += DataGridView_Irradiations_CellValueChanged; ;
             dataGridView_Samples.KeyPress              += FaceForm_KeyPress;
             dataGridView_Monitors.KeyPress             += FaceForm_KeyPress;
             dataGridView_Standarts.KeyPress            += FaceForm_KeyPress;
