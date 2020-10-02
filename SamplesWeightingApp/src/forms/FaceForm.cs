@@ -20,19 +20,16 @@ using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
 
-// TODO: Changing in the table should be automatically upload to db?
+// TODO: Changing in the table should be automatically upload to db
 // TODO: Changing in the table should be automatically upload to file, Year/SamplesSetKey.ves
 // TODO: Use csvhelper for ORM
-// TODO: keep the functional from previous version
 // TODO: after weighting at least one sample preparation phase should be closed
 // TODO: chosen language should be save into config file
 // TODO: add new auto update process
 // TODO: add github actions for ci/cd
 // TODO: add tests via winappdriver
-// TODO: move reweighting procedure and table to prod db
 
 
-// TODO: https://github.com/regata-jinr/SamplesWeighting/issues/11
 // TODO: https://github.com/regata-jinr/SamplesWeighting/issues/10
 
 namespace SamplesWeighting
@@ -107,7 +104,7 @@ namespace SamplesWeighting
                                         ThenBy(ss => ss.SRM_Set_Number).
                                         ToList();
 
-            _registers = _wc.Irradiations.Where(i => i.loadNumber != null).
+            _registers = _wc.Irradiations.AsNoTracking().Where(i => i.loadNumber != null).
                                     Select(r => new Register { loadNumber = r.loadNumber, Date_Start = r.Date_Start }).
                                     Distinct().
                                     OrderByDescending(i=>i.loadNumber).

@@ -111,6 +111,7 @@ namespace SamplesWeighting
 
         private void DataGridView_Journals_SelectionChanged(object sender, EventArgs e)
         {
+            _prevSelectedRowIndex = 0; // for reweighting row background color
             dataGridView_Irradiations.DataSource = null;
             _isDGVFilling = true;
             if (dataGridView_Journals.SelectedRows.Count <= 0) return;
@@ -122,11 +123,12 @@ namespace SamplesWeighting
 
             _reweights = _wc.Reweights.Where(r => r.loadNumber == ln).ToList();
 
-            var tmpReweights = _wc.Reweights.FromSqlInterpolated($"exec reweighting_data {ln}").ToList();
+            var tmpReweights = _wc.Reweights.FromSqlInterpolated($"exec reweighting_data {ln}").AsNoTracking().ToList();
 
             if (_reweights.Count != tmpReweights.Count)
             {
-                _wc.Reweights.AddRange(tmpReweights.Except(_reweights));
+                var tst = tmpReweights.Where(tr => !_reweights.Contains(tr)).ToList();
+                _wc.Reweights.AddRange(tst);
                 _wc.SaveChanges();
             }
             _reweights = _wc.Reweights.Where(  r => r.loadNumber == ln).
@@ -134,6 +136,7 @@ namespace SamplesWeighting
                                        ThenBy( r => r.Position_Number).
                                        ToList();
 
+           
             dataGridView_Irradiations.DataSource = _reweights;
 
             SetLanguageToObject(dataGridView_Irradiations);
@@ -375,8 +378,9 @@ namespace SamplesWeighting
 
         private void DataGridView_Standarts_SelectionChanged(object sender, EventArgs e)
         {
+            if (_isDGVFilling) return;
             if (dataGridView_Irradiations.SelectedCells.Count == 0) return;
-            if (!dataGridView_Irradiations.Focused) return;
+            //if (!dataGridView_Irradiations.Focused) return;
             var selectedRow = dataGridView_Irradiations.SelectedCells[0].OwningRow;
             dataGridView_Irradiations.Rows[_prevSelectedRowIndex].DefaultCellStyle.BackColor = Color.White;
             selectedRow.DefaultCellStyle.BackColor = Color.LightGray;

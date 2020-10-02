@@ -35,15 +35,15 @@ namespace SamplesWeighting
         {
             if (rw.Country_Code == null) return false;
 
-            return loadNumber       == rw.loadNumber &&
-                   Country_Code     == rw.Country_Code &&
-                   Client_Id        == rw.Client_Id &&
-                   Year             == rw.Year &&
-                   Sample_Set_Id    == rw.Sample_Set_Id &&
-                   Sample_Set_Index == rw.Sample_Set_Index &&
-                   Sample_ID        == rw.Sample_ID &&
-                   Container_Number == rw.Container_Number &&
-                   Position_Number  == rw.Position_Number;
+            return loadNumber         == rw.loadNumber &&
+                   Country_Code       == rw.Country_Code &&
+                   Client_Id          == rw.Client_Id &&
+                   Year               == rw.Year &&
+                   Sample_Set_Id      == rw.Sample_Set_Id &&
+                   Sample_Set_Index   == rw.Sample_Set_Index &&
+                   Sample_ID          == rw.Sample_ID; //&&
+                   //Container_Number == rw.Container_Number &&
+                   //Position_Number  == rw.Position_Number;
         }
     }
 
